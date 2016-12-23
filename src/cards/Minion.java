@@ -10,7 +10,9 @@ public abstract class Minion extends Card{
     public int currentHealth;
     public int defaultHealth;
 
-    public abstract int getDefaultHealth();
+    public int getDefaultHealth() {
+        return defaultHealth;
+    }
 
     public int getCurrentHealth() {
         return currentHealth;
@@ -18,7 +20,9 @@ public abstract class Minion extends Card{
 
     public int attack;
 
-    public abstract int getAttack();
+    public int getAttack() {
+        return attack;
+    }
 
     // TODO add this
     //public abstract void whenPlayed();

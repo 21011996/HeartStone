@@ -13,9 +13,13 @@ public abstract class Card {
 
     public int manaCost;
 
-    public abstract int getManaCost();
+    public int getManaCost() {
+        return manaCost;
+    }
 
     public String name;
 
-    public abstract String getName();
+    public String getName() {
+        return name;
+    }
 }
