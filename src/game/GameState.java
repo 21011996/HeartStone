@@ -1,6 +1,8 @@
 package game;
 
 import cards.Card;
+import cards.Minion;
+import cards.Spell;
 
 import java.util.ArrayList;
 
@@ -9,12 +11,12 @@ import java.util.ArrayList;
  *         Created on 23.12.2016.
  */
 public class GameState {
-    public Player player1;
-    public Player player2;
+    private Player player1;
+    private Player player2;
 
-    public TurnStage turnStage;
-    public ActivePlayer activePlayer;
-    public int turn;
+    private TurnStage turnStage;
+    private ActivePlayer activePlayer;
+    private int turn;
 
     public GameState(Player player1, Player player2) {
         this.player1 = player1;
@@ -33,7 +35,7 @@ public class GameState {
         return turnStage;
     }
 
-    public void setTurnStage(TurnStage turnStage) {
+    private void setTurnStage(TurnStage turnStage) {
         this.turnStage = turnStage;
     }
 
@@ -62,6 +64,10 @@ public class GameState {
         return player1;
     }
 
+    private void setActivePlayer(ActivePlayer activePlayer) {
+        this.activePlayer = activePlayer;
+    }
+
     public Player getNonActivePlayer() {
         switch (activePlayer) {
             case PLAYER_1:
@@ -70,10 +76,6 @@ public class GameState {
                 return player1;
         }
         return player2;
-    }
-
-    public void setActivePlayer(ActivePlayer activePlayer) {
-        this.activePlayer = activePlayer;
     }
 
     public ArrayList<Card> getOptions() {
@@ -90,11 +92,27 @@ public class GameState {
         }
     }
 
-    public void turnBeginDraw() {
+    public ArrayList<Card> getSecondaryOption(Card card) {
+        if (card instanceof Spell) {
+            switch (((Spell) card).getRequiredTarget()) {
+                case ENEMY:
+                    return getNonActivePlayer().getBoard().getMinions();
+                case FRIENDLY:
+                    return getActivePlayer().getBoard().getMinions();
+                case NONE:
+                    return new ArrayList<>();
+            }
+        } else if (card instanceof Minion) {
+            return getNonActivePlayer().getBoard().getMinions();
+        }
+        return new ArrayList<>();
+    }
+
+    private void turnBeginDraw() {
         getActivePlayer().draw(1);
     }
 
-    public void changeActivePlayer() {
+    private void changeActivePlayer() {
         switch (activePlayer) {
             case PLAYER_1:
                 activePlayer = ActivePlayer.PLAYER_1;

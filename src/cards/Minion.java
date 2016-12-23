@@ -23,8 +23,14 @@ public abstract class Minion extends Card {
         return attack;
     }
 
-    // TODO add this
-    //public abstract void whenPlayed();
+    public void trade(Card card) {
+        if (card instanceof Hero) {
+            ((Hero) card).takeDamage(getAttack());
+        } else if (card instanceof Minion) {
+            ((Minion) card).takeDamage(getAttack());
+            takeDamage(((Minion) card).getAttack());
+        }
+    }
 
     public void takeDamage(int damage) {
         currentHealth -= damage;

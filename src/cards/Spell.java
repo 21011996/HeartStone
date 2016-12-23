@@ -7,6 +7,7 @@ package cards;
 public abstract class Spell extends Card {
     public RequiredTarget requiredTarget;
 
-    //TODO add this
-    // public abstract void resolveSpell();
+    public RequiredTarget getRequiredTarget() {
+        return requiredTarget;
+    }
 }

@@ -9,20 +9,18 @@ import cards.Minion;
  *         Created on 23.12.2016.
  */
 public class Player {
-    public Hero hero;
-    public Board board;
-    public Deck deck;
-    public Hand hand;
+    private Hero hero;
+    private Board board;
+    private Deck deck;
+    private Hand hand;
 
-    public int manaLeft;
-    public int id;
+    private int manaLeft;
 
-    public Player(Hero hero, int id) {
+    public Player(Hero hero) {
         this.hero = hero;
         board = new Board();
         deck = new Deck();
         hand = new Hand();
-        this.id = id;
     }
 
     public void playCard(int id, int target, GameState gameState) {
@@ -30,6 +28,9 @@ public class Player {
         if (canPlay(toPlay)) {
             hand.playCard(id, target, gameState);
             spendMana(toPlay.getManaCost());
+            if (toPlay instanceof Minion) {
+                board.playMinion(toPlay);
+            }
         }
     }
 
@@ -45,11 +46,11 @@ public class Player {
         board.playMinion(minion);
     }
 
-    public boolean canPlay(Card card) {
+    private boolean canPlay(Card card) {
         return card.getManaCost() <= manaLeft;
     }
 
-    public void spendMana(int mana) {
+    private void spendMana(int mana) {
         manaLeft -= mana;
     }
 
