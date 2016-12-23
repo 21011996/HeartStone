@@ -24,7 +24,7 @@ public class DarkscaleHealer extends Minion {
 
     @Override
     public void resolve(int target, GameState gameState) {
-        for (Card card : gameState.getActivePlayer().board.getMinions()) {
+        for (Card card : gameState.getActivePlayer().getBoard().getMinions()) {
             ((Minion) card).heal(2);
         }
     }

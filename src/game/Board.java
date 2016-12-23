@@ -22,6 +22,10 @@ public class Board {
         return minions;
     }
 
+    public ArrayList<Card> getCards() {
+        return minions;
+    }
+
     public void playMinion(Card card) {
         minions.add(card);
     }

@@ -7,8 +7,9 @@ package cards;
 public abstract class Minion extends Card {
     public MinionStatus minionStatus = MinionStatus.ALIVE;
 
-    public int currentHealth;
+
     public int defaultHealth;
+    public int currentHealth = defaultHealth;
     public int attack;
 
     public int getDefaultHealth() {

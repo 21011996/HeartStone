@@ -1,6 +1,7 @@
 package game;
 
 import cards.Card;
+import cards.Minion;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,9 @@ public class Hand {
     public void playCard(int id, int target, GameState gameState) {
         Card playCard = this.cards.remove(id);
         playCard.resolve(target, gameState);
+        if (playCard instanceof Minion) {
+            ((Minion) playCard).currentHealth = ((Minion) playCard).defaultHealth;
+        }
     }
 
     public int handSize() {

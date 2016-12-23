@@ -12,13 +12,13 @@ public class ChillwindYeti extends Minion {
     public ChillwindYeti() {
         cardClass = CardClass.COMMON;
 
-        manaCost = 7;
+        manaCost = 4;
 
-        defaultHealth = 9;
+        defaultHealth = 5;
 
-        attack = 5;
+        attack = 4;
 
-        name = "Captured Jormungar";
+        name = "Chillwind Yeti";
     }
 
     @Override

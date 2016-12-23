@@ -36,6 +36,10 @@ public class Deck {
         return answer;
     }
 
+    public void add(Card card) {
+        deck.add(card);
+    }
+
     public int deckSize() {
         return deck.size();
     }

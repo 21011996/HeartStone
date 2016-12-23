@@ -3,6 +3,18 @@ package game;
 import cards.Card;
 import cards.Minion;
 import cards.Spell;
+import cards.commonCards.minions.*;
+import cards.mageCards.Medivh;
+import cards.mageCards.minions.WaterElemental;
+import cards.mageCards.spells.*;
+import cards.priestCards.Anduin;
+import cards.priestCards.minions.HoodedAcolyte;
+import cards.priestCards.minions.KabalTalonpriest;
+import cards.priestCards.minions.NorthshireCleric;
+import cards.priestCards.spells.HolyNova;
+import cards.priestCards.spells.HolySmite;
+import cards.priestCards.spells.MindControl;
+import cards.priestCards.spells.PowerWordShield;
 
 import java.util.ArrayList;
 
@@ -21,6 +33,9 @@ public class GameState {
     public GameState(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
+    }
+
+    public GameState() {
     }
 
     public Player getPlayer1() {
@@ -48,9 +63,11 @@ public class GameState {
     }
 
     public void initGameState() {
+        turn = 1;
         player1.draw(3);
         player2.draw(3);
         setActivePlayer(ActivePlayer.PLAYER_1);
+        getActivePlayer().setManaLeft(turn);
         setTurnStage(TurnStage.CARD_PLAY);
     }
 
@@ -78,6 +95,14 @@ public class GameState {
         return player2;
     }
 
+    public ArrayList<Card> getOptions(int playerId) {
+        if (playerId == getActivePlayer().getId()) {
+            return getOptions();
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
     public ArrayList<Card> getOptions() {
         Player currentPlayer = getActivePlayer();
         switch (turnStage) {
@@ -89,6 +114,14 @@ public class GameState {
                 return currentPlayer.getHero().getHeroPower();
             default:
                 return new ArrayList<>();
+        }
+    }
+
+    public ArrayList<Card> getSecondaryOption(int playerId, Card card) {
+        if (playerId == getActivePlayer().getId()) {
+            return getSecondaryOption(card);
+        } else {
+            return new ArrayList<>();
         }
     }
 
@@ -109,13 +142,16 @@ public class GameState {
     }
 
     private void turnBeginDraw() {
+        getActivePlayer().setManaLeft(turn);
         getActivePlayer().draw(1);
     }
 
     private void changeActivePlayer() {
         switch (activePlayer) {
-            case PLAYER_1:
+            case PLAYER_1: {
                 activePlayer = ActivePlayer.PLAYER_1;
+                turn = turn >= 10 ? 10 : turn + 1;
+            }
             case PLAYER_2:
                 activePlayer = ActivePlayer.PLAYER_2;
         }
@@ -133,5 +169,55 @@ public class GameState {
                 turnBeginDraw();
             }
         }
+    }
+
+    public GameState createExample() {
+        Deck deck1 = new Deck();
+        for (int i = 0; i < 2; i++) {
+            deck1.add(new HolySmite());
+            deck1.add(new NorthshireCleric());
+            deck1.add(new PowerWordShield());
+            deck1.add(new BloodfenRaptor());
+            deck1.add(new RiverCrocolisk());
+            deck1.add(new ColiseumManager());
+            deck1.add(new KabalTalonpriest());
+            deck1.add(new RazorfenHunter());
+            deck1.add(new ChillwindYeti());
+            deck1.add(new GnomishInventor());
+            deck1.add(new HoodedAcolyte());
+            deck1.add(new SenjinShieldmasta());
+            deck1.add(new DarkscaleHealer());
+            deck1.add(new HolyNova());
+            deck1.add(new MindControl());
+        }
+
+        Deck deck2 = new Deck();
+        for (int i = 0; i < 2; i++) {
+            deck2.add(new ArcaneBlast());
+            deck2.add(new BloodfenRaptor());
+            deck2.add(new RiverCrocolisk());
+            deck2.add(new Frostbolt());
+            deck2.add(new ArcaneIntellect());
+            deck2.add(new SpiderTank());
+            deck2.add(new ChillwindYeti());
+            deck2.add(new Fireball());
+            deck2.add(new GnomishInventor());
+            deck2.add(new SenjinShieldmasta());
+            deck2.add(new WaterElemental());
+            deck2.add(new FenCreeper());
+            deck2.add(new BoulderfistOgre());
+            deck2.add(new Flamestrike());
+        }
+        deck2.add(new FlameLance());
+        deck2.add(new CapturedJormungar());
+
+        Player player1 = new Player(new Anduin(), 1, deck1);
+        Player player2 = new Player(new Medivh(), 2, deck2);
+        GameState answer = new GameState(player1, player2);
+        answer.initGameState();
+        answer.getActivePlayer().playCard(1, 0, answer);
+        answer.getActivePlayer().getBoard().playMinion(new ChillwindYeti());
+        answer.getNonActivePlayer().getBoard().playMinion(new WaterElemental());
+        return answer;
     }
 }

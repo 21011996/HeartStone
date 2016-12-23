@@ -13,14 +13,28 @@ public class Player {
     private Board board;
     private Deck deck;
     private Hand hand;
-
+    private int id;
     private int manaLeft;
 
-    public Player(Hero hero) {
+    public Player(Hero hero, int id, Deck deck) {
         this.hero = hero;
         board = new Board();
-        deck = new Deck();
+        this.deck = deck;
         hand = new Hand();
+
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getManaLeft() {
+        return manaLeft;
+    }
+
+    public void setManaLeft(int manaLeft) {
+        this.manaLeft = manaLeft;
     }
 
     public void playCard(int id, int target, GameState gameState) {
