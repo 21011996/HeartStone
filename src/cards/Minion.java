@@ -4,11 +4,12 @@ package cards;
  * @author Ilya239.
  *         Created on 23.12.2016.
  */
-public abstract class Minion extends Card{
+public abstract class Minion extends Card {
     public MinionStatus minionStatus = MinionStatus.ALIVE;
 
     public int currentHealth;
     public int defaultHealth;
+    public int attack;
 
     public int getDefaultHealth() {
         return defaultHealth;
@@ -17,8 +18,6 @@ public abstract class Minion extends Card{
     public int getCurrentHealth() {
         return currentHealth;
     }
-
-    public int attack;
 
     public int getAttack() {
         return attack;

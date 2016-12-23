@@ -6,18 +6,16 @@ package cards;
  */
 public abstract class Card {
     public CardClass cardClass;
+    public int manaCost;
+    public String name;
 
     public CardClass getCardClass() {
         return cardClass;
     }
 
-    public int manaCost;
-
     public int getManaCost() {
         return manaCost;
     }
-
-    public String name;
 
     public String getName() {
         return name;

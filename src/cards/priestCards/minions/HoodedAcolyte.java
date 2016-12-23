@@ -1,4 +1,4 @@
-package cards.mageCards.minions;
+package cards.priestCards.minions;
 
 import cards.CardClass;
 import cards.Minion;
@@ -7,10 +7,9 @@ import cards.Minion;
  * @author Ilya239.
  *         Created on 23.12.2016.
  */
-public class WaterElemental extends Minion {
-
-    public WaterElemental() {
-        cardClass = CardClass.MAGE;
+public class HoodedAcolyte extends Minion {
+    public HoodedAcolyte() {
+        cardClass = CardClass.PRIEST;
 
         manaCost = 4;
 
@@ -18,6 +17,6 @@ public class WaterElemental extends Minion {
 
         attack = 3;
 
-        name = "Water Elemental";
+        name = "Hooded Acolyte";
     }
 }
