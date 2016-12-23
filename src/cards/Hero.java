@@ -10,7 +10,11 @@ public abstract class Hero extends Card {
     public int currentHealth;
     public int defaultHealth;
 
-    public abstract int getDefaultHealth();
+    public HeroPower heroPower;
+
+    public int getDefaultHealth(){
+        return defaultHealth;
+    }
 
     public int getCurrentHealth() {
         return currentHealth;
