@@ -2,6 +2,7 @@ package cards.priestCards.minions;
 
 import cards.CardClass;
 import cards.Minion;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -18,5 +19,10 @@ public class HoodedAcolyte extends Minion {
         attack = 3;
 
         name = "Hooded Acolyte";
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+
     }
 }

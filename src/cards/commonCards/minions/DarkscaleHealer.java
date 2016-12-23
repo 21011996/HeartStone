@@ -1,7 +1,9 @@
 package cards.commonCards.minions;
 
+import cards.Card;
 import cards.CardClass;
 import cards.Minion;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -18,5 +20,12 @@ public class DarkscaleHealer extends Minion {
         attack = 4;
 
         name = "Darkscale Healer";
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+        for (Card card : gameState.getActivePlayer().board.getMinions()) {
+            ((Minion) card).heal(2);
+        }
     }
 }

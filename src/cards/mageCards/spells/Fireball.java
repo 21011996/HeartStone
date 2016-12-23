@@ -1,7 +1,9 @@
 package cards.mageCards.spells;
 
 import cards.CardClass;
+import cards.RequiredTarget;
 import cards.Spell;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -14,5 +16,11 @@ public class Fireball extends Spell {
         manaCost = 4;
 
         name = "Fireball";
+        requiredTarget = RequiredTarget.ENEMY;
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+        gameState.getNonActivePlayer().getMinion(target).takeDamage(6);
     }
 }

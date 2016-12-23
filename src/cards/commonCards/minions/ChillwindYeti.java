@@ -2,6 +2,7 @@ package cards.commonCards.minions;
 
 import cards.CardClass;
 import cards.Minion;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -18,5 +19,10 @@ public class ChillwindYeti extends Minion {
         attack = 5;
 
         name = "Captured Jormungar";
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+
     }
 }

@@ -1,5 +1,7 @@
 package cards;
 
+import game.GameState;
+
 /**
  * @author Ilya239.
  *         Created on 23.12.2016.
@@ -20,4 +22,6 @@ public abstract class Card {
     public String getName() {
         return name;
     }
+
+    public abstract void resolve(int target, GameState gameState);
 }

@@ -2,6 +2,7 @@ package cards.commonCards.minions;
 
 import cards.CardClass;
 import cards.Minion;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -18,5 +19,10 @@ public class RazorfenHunter extends Minion {
         attack = 2;
 
         name = "Razorfen Hunter";
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+        gameState.getActivePlayer().addMinion(new Sheep());
     }
 }

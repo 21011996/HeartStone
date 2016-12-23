@@ -1,6 +1,8 @@
 package game;
 
+import cards.Card;
 import cards.Hero;
+import cards.Minion;
 
 /**
  * @author Ilya239.
@@ -23,8 +25,32 @@ public class Player {
         this.id = id;
     }
 
-    public void playCard(int id, GameState gameState) {
-        hand.playCard(id, gameState);
+    public void playCard(int id, int target, GameState gameState) {
+        Card toPlay = hand.getCards().get(id);
+        if (canPlay(toPlay)) {
+            hand.playCard(id, target, gameState);
+            spendMana(toPlay.getManaCost());
+        }
+    }
+
+    public Minion getMinion(int id) {
+        return board.getMinion(id);
+    }
+
+    public void removeMinion(int id) {
+        board.removeMinion(id);
+    }
+
+    public void addMinion(Minion minion) {
+        board.playMinion(minion);
+    }
+
+    public boolean canPlay(Card card) {
+        return card.getManaCost() <= manaLeft;
+    }
+
+    public void spendMana(int mana) {
+        manaLeft -= mana;
     }
 
     public Hero getHero() {

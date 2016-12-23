@@ -1,8 +1,11 @@
 package game;
 
 import cards.Card;
+import cards.Minion;
+import cards.MinionStatus;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 /**
  * @author Ilya239.
@@ -21,5 +24,26 @@ public class Board {
 
     public void playMinion(Card card) {
         minions.add(card);
+    }
+
+    public Minion getMinion(int id) {
+        return (Minion) minions.get(id);
+    }
+
+    public void removeDeadMinions() {
+        minions.removeIf(new Predicate<Card>() {
+            @Override
+            public boolean test(Card card) {
+                if (card instanceof Minion) {
+                    return ((Minion) card).minionStatus == MinionStatus.DEAD;
+                } else {
+                    return true;
+                }
+            }
+        });
+    }
+
+    public void removeMinion(int id) {
+        minions.remove(id);
     }
 }

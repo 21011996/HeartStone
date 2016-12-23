@@ -2,6 +2,7 @@ package cards.priestCards;
 
 import cards.CardClass;
 import cards.Hero;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -14,5 +15,9 @@ public class Anduin extends Hero{
         defaultHealth = 30;
         currentHealth = 30;
         heroPower = new LesserHeal();
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
     }
 }

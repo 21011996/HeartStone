@@ -2,6 +2,7 @@ package cards.commonCards.minions;
 
 import cards.CardClass;
 import cards.Minion;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -18,5 +19,10 @@ public class RiverCrocolisk extends Minion {
         attack = 2;
 
         name = "River Crocolisk";
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+
     }
 }

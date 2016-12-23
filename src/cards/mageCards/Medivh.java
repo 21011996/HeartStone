@@ -4,6 +4,7 @@ import cards.CardClass;
 import cards.Hero;
 import cards.HeroPower;
 import cards.HeroStatus;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -16,5 +17,10 @@ public class Medivh extends Hero {
         defaultHealth = 30;
         currentHealth = 30;
         heroPower = new Fireblast();
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+
     }
 }

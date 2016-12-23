@@ -1,15 +1,27 @@
 package cards.priestCards.spells;
 
 import cards.CardClass;
+import cards.RequiredTarget;
+import cards.Spell;
+import game.GameState;
 
 /**
  * @author Ilya239.
  *         Created on 23.12.2016.
  */
-public class PowerWordShield {
-    public CardClass cardClass = CardClass.PRIEST;
+public class PowerWordShield extends Spell{
+    public PowerWordShield() {
+        requiredTarget = RequiredTarget.FRIENDLY;
+        cardClass = CardClass.PRIEST;
 
-    public int manaCost = 1;
+        manaCost = 10;
 
-    public String name = "Power Word: Shield";
+        name = "Mind Control";
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+        gameState.getActivePlayer().draw(1);
+        gameState.getActivePlayer().getMinion(target).addHealth(2);
+    }
 }

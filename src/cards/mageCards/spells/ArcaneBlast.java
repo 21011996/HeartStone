@@ -1,7 +1,9 @@
 package cards.mageCards.spells;
 
 import cards.CardClass;
+import cards.RequiredTarget;
 import cards.Spell;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -16,5 +18,11 @@ public class ArcaneBlast extends Spell {
         manaCost = 1;
 
         name = "Arcane Blast";
+        requiredTarget = RequiredTarget.ENEMY;
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+        gameState.getNonActivePlayer().getMinion(target).takeDamage(2);
     }
 }

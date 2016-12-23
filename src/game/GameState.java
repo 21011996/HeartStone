@@ -62,6 +62,16 @@ public class GameState {
         return player1;
     }
 
+    public Player getNonActivePlayer() {
+        switch (activePlayer) {
+            case PLAYER_1:
+                return player2;
+            case PLAYER_2:
+                return player1;
+        }
+        return player2;
+    }
+
     public void setActivePlayer(ActivePlayer activePlayer) {
         this.activePlayer = activePlayer;
     }
@@ -71,7 +81,7 @@ public class GameState {
         switch (turnStage) {
             case CARD_PLAY:
                 return currentPlayer.getHand().getCards();
-            case ATTAK:
+            case ATTACK:
                 return currentPlayer.getBoard().getMinions();
             case HERO_POWER:
                 return currentPlayer.getHero().getHeroPower();
@@ -96,8 +106,8 @@ public class GameState {
     public void nextStage() {
         switch (turnStage) {
             case CARD_PLAY:
-                turnStage = TurnStage.ATTAK;
-            case ATTAK:
+                turnStage = TurnStage.ATTACK;
+            case ATTACK:
                 turnStage = TurnStage.HERO_POWER;
             case HERO_POWER: {
                 turnStage = TurnStage.CARD_PLAY;

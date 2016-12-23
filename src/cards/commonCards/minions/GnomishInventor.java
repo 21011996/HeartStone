@@ -2,6 +2,7 @@ package cards.commonCards.minions;
 
 import cards.CardClass;
 import cards.Minion;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -18,5 +19,10 @@ public class GnomishInventor extends Minion {
         attack = 2;
 
         name = "Gnomish Inventor";
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+        gameState.getActivePlayer().draw(1);
     }
 }

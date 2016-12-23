@@ -1,7 +1,7 @@
 package cards.priestCards;
 
-import cards.CardClass;
-import cards.HeroPower;
+import cards.*;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -12,5 +12,12 @@ public class LesserHeal extends HeroPower {
         cardClass = CardClass.PRIEST;
         manaCost = 2;
         name = "Lesser Heal";
+        requiredTarget = RequiredTarget.FRIENDLY;
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+        Card targeted = gameState.getActivePlayer().getMinion(target);
+        ((Minion) targeted).heal(2);
     }
 }

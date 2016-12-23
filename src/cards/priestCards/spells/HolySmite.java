@@ -1,16 +1,26 @@
 package cards.priestCards.spells;
 
 import cards.CardClass;
+import cards.RequiredTarget;
 import cards.Spell;
+import game.GameState;
 
 /**
  * @author Ilya239.
  *         Created on 23.12.2016.
  */
 public class HolySmite extends Spell {
-    public CardClass cardClass = CardClass.PRIEST;
+    public HolySmite() {
+        cardClass = CardClass.PRIEST;
 
-    public int manaCost = 1;
+        manaCost = 1;
 
-    public String name = "Holy Smite";
+        name = "Holy Smite";
+        requiredTarget = RequiredTarget.ENEMY;
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+        gameState.getNonActivePlayer().getMinion(target).takeDamage(2);
+    }
 }

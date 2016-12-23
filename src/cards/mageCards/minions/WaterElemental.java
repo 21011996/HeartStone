@@ -2,6 +2,7 @@ package cards.mageCards.minions;
 
 import cards.CardClass;
 import cards.Minion;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -19,5 +20,10 @@ public class WaterElemental extends Minion {
         attack = 3;
 
         name = "Water Elemental";
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+
     }
 }

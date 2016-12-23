@@ -24,9 +24,9 @@ public class Hand {
         this.cards.addAll(cards);
     }
 
-    public void playCard(int id, GameState gameState) {
+    public void playCard(int id, int target, GameState gameState) {
         Card playCard = this.cards.remove(id);
-        playCard.resolve(gameState);
+        playCard.resolve(target, gameState);
     }
 
     public int handSize() {

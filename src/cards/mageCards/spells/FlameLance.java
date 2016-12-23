@@ -1,7 +1,9 @@
 package cards.mageCards.spells;
 
 import cards.CardClass;
+import cards.RequiredTarget;
 import cards.Spell;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -14,5 +16,11 @@ public class FlameLance extends Spell {
         manaCost = 5;
 
         name = "Flame Lance";
+        requiredTarget = RequiredTarget.ENEMY;
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+        gameState.getNonActivePlayer().getMinion(target).takeDamage(8);
     }
 }

@@ -2,6 +2,7 @@ package cards.priestCards.minions;
 
 import cards.CardClass;
 import cards.Minion;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -18,5 +19,10 @@ public class KabalTalonpriest extends Minion {
         attack = 3;
 
         name = "Kabal Talonpriest";
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+        gameState.getActivePlayer().getMinion(target).addHealth(3);
     }
 }

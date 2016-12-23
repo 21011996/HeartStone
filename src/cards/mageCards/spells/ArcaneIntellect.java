@@ -1,7 +1,9 @@
 package cards.mageCards.spells;
 
 import cards.CardClass;
+import cards.RequiredTarget;
 import cards.Spell;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -14,5 +16,11 @@ public class ArcaneIntellect extends Spell {
         manaCost = 3;
 
         name = "Arcane Intellect";
+        requiredTarget = RequiredTarget.NONE;
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+        gameState.getActivePlayer().draw(2);
     }
 }

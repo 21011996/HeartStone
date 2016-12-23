@@ -1,7 +1,7 @@
 package cards.mageCards.spells;
 
-import cards.CardClass;
-import cards.Spell;
+import cards.*;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -14,5 +14,13 @@ public class Flamestrike extends Spell {
         manaCost = 7;
 
         name = "Flamestrike";
+        requiredTarget = RequiredTarget.NONE;
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+        for (Card minion : gameState.getNonActivePlayer().board.getMinions()) {
+            ((Minion) minion).takeDamage(4);
+        }
     }
 }

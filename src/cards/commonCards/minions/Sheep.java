@@ -2,6 +2,7 @@ package cards.commonCards.minions;
 
 import cards.CardClass;
 import cards.Minion;
+import game.GameState;
 
 /**
  * @author Ilya239.
@@ -18,5 +19,10 @@ public class Sheep extends Minion {
         attack = 1;
 
         String name = "Sheep";
+    }
+
+    @Override
+    public void resolve(int target, GameState gameState) {
+
     }
 }
