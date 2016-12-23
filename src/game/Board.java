@@ -15,6 +15,10 @@ public class Board {
         minions = new ArrayList<>();
     }
 
+    public ArrayList<Card> getMinions() {
+        return minions;
+    }
+
     public void playMinion(Card card) {
         minions.add(card);
     }

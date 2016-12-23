@@ -12,15 +12,21 @@ public class Hand {
     public ArrayList<Card> cards;
 
     public Hand() {
+
         cards = new ArrayList<>();
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
     }
 
     public void addCards(ArrayList<Card> cards) {
         this.cards.addAll(cards);
     }
 
-    public void playCard(int id) {
-        this.cards.remove(id);
+    public void playCard(int id, GameState gameState) {
+        Card playCard = this.cards.remove(id);
+        playCard.resolve(gameState);
     }
 
     public int handSize() {

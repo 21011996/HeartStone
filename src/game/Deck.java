@@ -2,7 +2,10 @@ package game;
 
 import cards.Card;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
 
 /**
  * @author Ilya239.
@@ -23,7 +26,7 @@ public class Deck {
         Collections.shuffle(this.deck);
     }
 
-    public List<Card> draw(int count) {
+    public ArrayList<Card> draw(int count) {
         ArrayList<Card> answer = new ArrayList<>();
         int i = count;
         while (!deck.isEmpty() && i > 0) {
