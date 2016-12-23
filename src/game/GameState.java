@@ -1,6 +1,7 @@
 package game;
 
 import cards.Card;
+import cards.Hero;
 import cards.Minion;
 import cards.Spell;
 import cards.commonCards.minions.*;
@@ -23,9 +24,10 @@ import java.util.ArrayList;
  *         Created on 23.12.2016.
  */
 public class GameState {
+    public String card;
+    public String card2;
     private Player player1;
     private Player player2;
-
     private TurnStage turnStage;
     private ActivePlayer activePlayer;
     private int turn;
@@ -36,6 +38,44 @@ public class GameState {
     }
 
     public GameState() {
+    }
+
+    public String getCard() {
+        return card;
+    }
+
+    public void setCard(String card) {
+        this.card = card;
+    }
+
+    public String getCard2() {
+        return card2;
+    }
+
+    public void setCard2(String card2) {
+        this.card2 = card2;
+    }
+
+    public Player getPlayer(int i) {
+        switch (i) {
+            case 1:
+                return player1;
+            case 2:
+                return player2;
+            default:
+                return player1;
+        }
+    }
+
+    public Player getNonPlayer(int i) {
+        switch (i) {
+            case 1:
+                return player2;
+            case 2:
+                return player1;
+            default:
+                return player2;
+        }
     }
 
     public Player getPlayer1() {
@@ -111,7 +151,7 @@ public class GameState {
             case ATTACK:
                 return currentPlayer.getBoard().getMinions();
             case HERO_POWER:
-                return currentPlayer.getHero().getHeroPower();
+                return ((Hero) currentPlayer.getHero()).getHeroPower();
             default:
                 return new ArrayList<>();
         }
@@ -126,17 +166,23 @@ public class GameState {
     }
 
     public ArrayList<Card> getSecondaryOption(Card card) {
+        ArrayList<Card> target = new ArrayList<>();
         if (card instanceof Spell) {
             switch (((Spell) card).getRequiredTarget()) {
                 case ENEMY:
-                    return getNonActivePlayer().getBoard().getMinions();
+                    target = getNonActivePlayer().getBoard().getMinions();
+                    //target.add(getNonActivePlayer().getHero());
                 case FRIENDLY:
-                    return getActivePlayer().getBoard().getMinions();
+                    target = getActivePlayer().getBoard().getMinions();
+                    //target.add(getActivePlayer().getHero());
                 case NONE:
                     return new ArrayList<>();
             }
+            return target;
         } else if (card instanceof Minion) {
-            return getNonActivePlayer().getBoard().getMinions();
+            target = getNonActivePlayer().getBoard().getMinions();
+            target.add(getNonActivePlayer().getHero());
+            return target;
         }
         return new ArrayList<>();
     }
@@ -149,11 +195,13 @@ public class GameState {
     private void changeActivePlayer() {
         switch (activePlayer) {
             case PLAYER_1: {
-                activePlayer = ActivePlayer.PLAYER_1;
+                activePlayer = ActivePlayer.PLAYER_2;
                 turn = turn >= 10 ? 10 : turn + 1;
+                break;
             }
             case PLAYER_2:
-                activePlayer = ActivePlayer.PLAYER_2;
+                activePlayer = ActivePlayer.PLAYER_1;
+                break;
         }
     }
 
@@ -161,12 +209,15 @@ public class GameState {
         switch (turnStage) {
             case CARD_PLAY:
                 turnStage = TurnStage.ATTACK;
+                break;
             case ATTACK:
                 turnStage = TurnStage.HERO_POWER;
+                break;
             case HERO_POWER: {
                 turnStage = TurnStage.CARD_PLAY;
                 changeActivePlayer();
                 turnBeginDraw();
+                break;
             }
         }
     }
@@ -215,9 +266,6 @@ public class GameState {
         Player player2 = new Player(new Medivh(), 2, deck2);
         GameState answer = new GameState(player1, player2);
         answer.initGameState();
-        answer.getActivePlayer().playCard(1, 0, answer);
-        answer.getActivePlayer().getBoard().playMinion(new ChillwindYeti());
-        answer.getNonActivePlayer().getBoard().playMinion(new WaterElemental());
         return answer;
     }
 }

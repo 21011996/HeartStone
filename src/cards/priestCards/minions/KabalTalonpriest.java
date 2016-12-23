@@ -23,6 +23,6 @@ public class KabalTalonpriest extends Minion {
 
     @Override
     public void resolve(int target, GameState gameState) {
-        gameState.getActivePlayer().getMinion(target).addHealth(3);
+        ((Minion) gameState.getActivePlayer().getMinion(target)).addHealth(3);
     }
 }

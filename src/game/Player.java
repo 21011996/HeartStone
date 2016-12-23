@@ -48,7 +48,7 @@ public class Player {
         }
     }
 
-    public Minion getMinion(int id) {
+    public Card getMinion(int id) {
         return board.getMinion(id);
     }
 
@@ -68,7 +68,7 @@ public class Player {
         manaLeft -= mana;
     }
 
-    public Hero getHero() {
+    public Card getHero() {
         return hero;
     }
 

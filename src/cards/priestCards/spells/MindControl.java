@@ -23,7 +23,7 @@ public class MindControl extends Spell{
 
     @Override
     public void resolve(int target, GameState gameState) {
-        Minion targeted = gameState.getNonActivePlayer().getMinion(target);
+        Minion targeted = (Minion) gameState.getNonActivePlayer().getMinion(target);
         gameState.getNonActivePlayer().removeMinion(target);
         gameState.getActivePlayer().addMinion(targeted);
     }

@@ -30,8 +30,8 @@ public class Board {
         minions.add(card);
     }
 
-    public Minion getMinion(int id) {
-        return (Minion) minions.get(id);
+    public Card getMinion(int id) {
+        return minions.get(id);
     }
 
     public void removeDeadMinions() {

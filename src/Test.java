@@ -7,5 +7,6 @@ import game.GameState;
 public class Test {
     public static void main(String[] args) throws Exception {
         GameState gameState = new GameState().createExample();
+        gameState.nextStage();
     }
 }

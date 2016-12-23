@@ -24,4 +24,9 @@ public abstract class Card {
     }
 
     public abstract void resolve(int target, GameState gameState);
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

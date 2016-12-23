@@ -1,6 +1,7 @@
 package cards.mageCards.spells;
 
 import cards.CardClass;
+import cards.Minion;
 import cards.RequiredTarget;
 import cards.Spell;
 import game.GameState;
@@ -21,6 +22,6 @@ public class Frostbolt extends Spell {
 
     @Override
     public void resolve(int target, GameState gameState) {
-        gameState.getNonActivePlayer().getMinion(target).takeDamage(3);
+        ((Minion) gameState.getNonActivePlayer().getMinion(target)).takeDamage(3);
     }
 }
