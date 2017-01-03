@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="org.eclipse.jetty:jetty-jsp:9.2.7.v20150116" type="repository">
+    <properties maven-id="org.eclipse.jetty:jetty-jsp:9.2.7.v20150116" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jetty-jsp-9.2.7.v20150116.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jetty-util-9.2.7.v20150116.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jetty-server-9.2.7.v20150116.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.servlet-api-3.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jetty-http-9.2.7.v20150116.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jetty-io-9.2.7.v20150116.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jetty-schemas-3.1.M0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp-api-2.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp-2.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.el-3.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp.jstl-1.2.0.v201105211821.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp.jstl-1.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.eclipse.jdt.core-3.8.2.v20130121.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/jetty-jsp-9.2.7.v20150116-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
