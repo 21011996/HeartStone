@@ -7,11 +7,8 @@ import java.util.Collections;
  * @author Ilya239.
  *         Created on 23.12.2016.
  */
-public abstract class Hero extends Card {
+public abstract class Hero extends Minion {
     public HeroStatus heroStatus = HeroStatus.ALIVE;
-
-    public int currentHealth;
-    public int defaultHealth;
     public HeroPower heroPower;
 
     public ArrayList<Card> getHeroPower() {

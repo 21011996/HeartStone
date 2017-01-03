@@ -147,10 +147,13 @@ public class GameState {
         Player currentPlayer = getActivePlayer();
         switch (turnStage) {
             case CARD_PLAY:
+                //TODO check manacost
                 return currentPlayer.getHand().getCards();
             case ATTACK:
+                //TODO fix super mega mindfury and charge
                 return currentPlayer.getBoard().getMinions();
             case HERO_POWER:
+                //TODO check manacost
                 return ((Hero) currentPlayer.getHero()).getHeroPower();
             default:
                 return new ArrayList<>();

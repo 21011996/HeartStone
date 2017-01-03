@@ -27,6 +27,6 @@ public abstract class Card {
 
     @Override
     public String toString() {
-        return getName();
+        return getName() + " (" + getManaCost() + ")";
     }
 }
