@@ -175,9 +175,11 @@ public class GameState {
                 case ENEMY:
                     target = getNonActivePlayer().getBoard().getMinions();
                     target.add(getNonActivePlayer().getHero());
+                    break;
                 case FRIENDLY:
                     target = getActivePlayer().getBoard().getMinions();
                     target.add(getActivePlayer().getHero());
+                    break;
                 case NONE:
                     return new ArrayList<>();
             }
