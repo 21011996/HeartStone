@@ -5,9 +5,4 @@ package cards;
  *         Created on 23.12.2016.
  */
 public abstract class Spell extends Card {
-    public RequiredTarget requiredTarget;
-
-    public RequiredTarget getRequiredTarget() {
-        return requiredTarget;
-    }
 }

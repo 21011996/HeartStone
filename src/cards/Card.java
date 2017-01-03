@@ -12,6 +12,12 @@ public abstract class Card {
     public String name;
     private int id = 0;
 
+    public RequiredTarget requiredTarget;
+
+    public RequiredTarget getRequiredTarget() {
+        return requiredTarget;
+    }
+
     public CardClass getCardClass() {
         return cardClass;
     }
