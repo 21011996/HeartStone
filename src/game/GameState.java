@@ -1,9 +1,6 @@
 package game;
 
-import cards.Card;
-import cards.Hero;
-import cards.Minion;
-import cards.Spell;
+import cards.*;
 import cards.commonCards.minions.*;
 import cards.mageCards.Medivh;
 import cards.mageCards.minions.WaterElemental;
@@ -150,16 +147,22 @@ public class GameState {
         switch (turnStage) {
             case CARD_PLAY:
                 //TODO check manacost
-                return currentPlayer.getHand().getCards();
+                return filterByMana(currentPlayer.getHand().getCards());
             case ATTACK:
                 //TODO fix super mega mindfury and charge
                 return currentPlayer.getBoard().getMinions();
             case HERO_POWER:
                 //TODO check manacost
-                return ((Hero) currentPlayer.getHero()).getHeroPower();
+                return filterByMana(((Hero) currentPlayer.getHero()).getHeroPower());
             default:
                 return new ArrayList<>();
         }
+    }
+
+    private ArrayList<Card> filterByMana(ArrayList<Card> cards) {
+        ArrayList<Card> tmp = new ArrayList<>(cards);
+        tmp.removeIf(x -> x.getManaCost() > getActivePlayer().getManaLeft());
+        return tmp;
     }
 
     public ArrayList<Card> getSecondaryOption(int playerId, Card card) {
