@@ -174,10 +174,10 @@ public class GameState {
             switch (((Spell) card).getRequiredTarget()) {
                 case ENEMY:
                     target = getNonActivePlayer().getBoard().getMinions();
-                    //target.add(getNonActivePlayer().getHero());
+                    target.add(getNonActivePlayer().getHero());
                 case FRIENDLY:
                     target = getActivePlayer().getBoard().getMinions();
-                    //target.add(getActivePlayer().getHero());
+                    target.add(getActivePlayer().getHero());
                 case NONE:
                     return new ArrayList<>();
             }

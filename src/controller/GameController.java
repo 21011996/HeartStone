@@ -64,7 +64,7 @@ public class GameController {
         Card card1 = null;
         id = 0;
         for (Card card2 : gameState.getOptions()) {
-            if (card2.getName().equals(card)) {
+            if (card2.toString().equals(card)) {
                 card1 = card2;
                 break;
             }
