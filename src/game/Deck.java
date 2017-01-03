@@ -17,12 +17,20 @@ public class Deck {
     public Deck(Card... cards) {
         deck = new LinkedList<>();
         deck.addAll(Arrays.asList(cards));
+        int i = 0;
+        for (Card card : deck) {
+            card.setId(i++);
+        }
         Collections.shuffle(deck);
     }
 
     public Deck(ArrayList<Card> deck) {
         this.deck = new LinkedList<>();
         this.deck.addAll(deck);
+        int i = 0;
+        for (Card card : deck) {
+            card.setId(i++);
+        }
         Collections.shuffle(this.deck);
     }
 

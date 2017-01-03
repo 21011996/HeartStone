@@ -61,9 +61,8 @@ public class GameController {
     @RequestMapping(value = "/play-card", method = RequestMethod.GET)
     public String playCard(@RequestParam String card, ModelMap map) {
         Card card1 = null;
-        id = 0;
         for (Card card2 : gameState.getOptions()) {
-            if (card2.toString().equals(card)) {
+            if (card2.getId() == Integer.parseInt(card)) {
                 card1 = card2;
                 break;
             }
