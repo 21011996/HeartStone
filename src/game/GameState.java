@@ -223,7 +223,7 @@ public class GameState {
     }
 
     public GameState createExample() {
-        Deck deck1 = new Deck();
+        ArrayList<Card> deck1 = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
             deck1.add(new HolySmite());
             deck1.add(new NorthshireCleric());
@@ -242,7 +242,7 @@ public class GameState {
             deck1.add(new MindControl());
         }
 
-        Deck deck2 = new Deck();
+        ArrayList<Card> deck2 = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
             deck2.add(new ArcaneBlast());
             deck2.add(new BloodfenRaptor());
@@ -262,8 +262,8 @@ public class GameState {
         deck2.add(new FlameLance());
         deck2.add(new CapturedJormungar());
 
-        Player player1 = new Player(new Anduin(), 1, deck1);
-        Player player2 = new Player(new Medivh(), 2, deck2);
+        Player player1 = new Player(new Anduin(), 1, new Deck(deck1));
+        Player player2 = new Player(new Medivh(), 2, new Deck(deck2));
         GameState answer = new GameState(player1, player2);
         answer.initGameState();
         return answer;

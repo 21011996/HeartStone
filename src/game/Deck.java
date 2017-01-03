@@ -40,6 +40,10 @@ public class Deck {
         deck.add(card);
     }
 
+    public void shuffle() {
+        Collections.shuffle(deck);
+    }
+
     public int deckSize() {
         return deck.size();
     }
