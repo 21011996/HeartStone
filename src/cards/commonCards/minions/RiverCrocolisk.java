@@ -4,6 +4,8 @@ import cards.CardClass;
 import cards.Minion;
 import game.GameState;
 
+import static cards.RequiredTarget.NONE;
+
 /**
  * @author Ilya239.
  *         Created on 23.12.2016.
@@ -15,10 +17,11 @@ public class RiverCrocolisk extends Minion {
         manaCost = 2;
 
         defaultHealth = 3;
-
+        currentHealth = defaultHealth;
         attack = 2;
 
         name = "River Crocolisk";
+        requiredTarget = NONE;
     }
 
     @Override

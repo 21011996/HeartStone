@@ -11,7 +11,12 @@ public abstract class Minion extends Card {
     public int defaultHealth;
     public int currentHealth = defaultHealth;
     public int attack;
+    public RequiredTarget requiredTarget;
     public boolean exhausted = true;
+
+    public RequiredTarget getRequiredTarget() {
+        return requiredTarget;
+    }
 
     public boolean isExhausted() {
         return exhausted;

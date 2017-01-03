@@ -5,6 +5,8 @@ import cards.CardClass;
 import cards.Minion;
 import game.GameState;
 
+import static cards.RequiredTarget.NONE;
+
 /**
  * @author Ilya239.
  *         Created on 23.12.2016.
@@ -16,10 +18,11 @@ public class DarkscaleHealer extends Minion {
         manaCost = 5;
 
         defaultHealth = 5;
-
+        currentHealth = defaultHealth;
         attack = 4;
 
         name = "Darkscale Healer";
+        requiredTarget = NONE;
     }
 
     @Override

@@ -32,8 +32,9 @@
     </form:form>
     <h3>Enemy Board</h3>
     <form:form modelAttribute="gameState" method="GET" action="/game">
+        <h4>Enemy hero: ${gameState.getNonPlayer(playerNo).getHero().getName()}
+            (Health: ${gameState.getNonPlayer(playerNo).getHero().getCurrentHealth()})</h4>
         <table border="1">
-            <h4>Hero: ${gameState.getNonPlayer(playerNo).getHero()} (Health: ${gameState.getNonPlayer(playerNo).getHero().getCurrentHealth()})</h4>
             <tr>
                 <c:forEach var="card" items="${gameState.getNonPlayer(playerNo).getBoard().getCards()}">
                     <td colspan="2">${card.getName()}</td>
@@ -51,7 +52,6 @@
     <h3>Your Board</h3>
     <form:form modelAttribute="gameState" method="GET" action="/game">
         <table border="1">
-            <h4>Hero: ${gameState.getActivePlayer().getHero()} (Health: ${gameState.getActivePlayer().getHero().getCurrentHealth()})</h4>
             <tr>
                 <c:forEach var="card" items="${gameState.getPlayer(playerNo).getBoard().getCards()}">
                     <td colspan="2">${card.getName()}</td>
@@ -65,6 +65,8 @@
                 </c:forEach>
             </tr>
         </table>
+        <h4>Your hero: ${gameState.getPlayer(playerNo).getHero().getName()}
+            (Health: ${gameState.getPlayer(playerNo).getHero().getCurrentHealth()})</h4>
     </form:form>
     <h3>Your Hand</h3>
     <form:form modelAttribute="gameState" method="GET" action="/game">
