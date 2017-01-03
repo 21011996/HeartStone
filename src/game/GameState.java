@@ -192,6 +192,11 @@ public class GameState {
         return new ArrayList<>();
     }
 
+    public void removeDeadMinions() {
+        getActivePlayer().getBoard().removeDeadMinions();
+        getNonActivePlayer().getBoard().removeDeadMinions();
+    }
+
     private void turnBeginDraw() {
         getActivePlayer().setManaLeft(turn);
         getActivePlayer().draw(1);
@@ -222,9 +227,14 @@ public class GameState {
                 turnStage = TurnStage.CARD_PLAY;
                 changeActivePlayer();
                 turnBeginDraw();
+                refreshMinions();
                 break;
             }
         }
+    }
+
+    void refreshMinions() {
+        getActivePlayer().getBoard().refreshMinions();
     }
 
     public GameState createExample() {

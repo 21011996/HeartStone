@@ -34,6 +34,12 @@ public class Board {
         return minions.get(id);
     }
 
+    public void refreshMinions() {
+        for (Card card : minions) {
+            ((Minion) card).setExhausted(false);
+        }
+    }
+
     public void removeDeadMinions() {
         minions.removeIf(new Predicate<Card>() {
             @Override
