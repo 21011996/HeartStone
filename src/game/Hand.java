@@ -25,11 +25,11 @@ public class Hand {
         this.cards.addAll(cards);
     }
 
-    public void playCard(int id, Card target, GameState gameState) {
-        Card playCard = this.cards.remove(id);
-        playCard.resolve(target, gameState);
-        if (playCard instanceof Minion) {
-            ((Minion) playCard).currentHealth = ((Minion) playCard).defaultHealth;
+    public void playCard(Card toPlay, Card target, GameState gameState) {
+        this.cards.remove(toPlay);
+        toPlay.resolve(target, gameState);
+        if (toPlay instanceof Minion) {
+            ((Minion) toPlay).currentHealth = ((Minion) toPlay).defaultHealth;
         }
     }
 

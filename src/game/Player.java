@@ -37,10 +37,9 @@ public class Player {
         this.manaLeft = manaLeft;
     }
 
-    public void playCard(int id, Card target, GameState gameState) {
-        Card toPlay = hand.getCards().get(id);
+    public void playCard(Card toPlay, Card target, GameState gameState) {
         if (canPlay(toPlay)) {
-            hand.playCard(id, target, gameState);
+            hand.playCard(toPlay, target, gameState);
             spendMana(toPlay.getManaCost());
             if (toPlay instanceof Minion) {
                 board.playMinion(toPlay);
