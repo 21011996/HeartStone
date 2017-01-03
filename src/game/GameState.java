@@ -177,9 +177,11 @@ public class GameState {
                 case ENEMY:
                     target = getNonActivePlayer().getBoard().getMinions();
                     target.add(getNonActivePlayer().getHero());
+                    break;
                 case FRIENDLY:
                     target = getActivePlayer().getBoard().getMinions();
                     target.add(getActivePlayer().getHero());
+                    break;
                 case NONE:
                     return new ArrayList<>();
             }
@@ -190,6 +192,11 @@ public class GameState {
             return target;
         }
         return new ArrayList<>();
+    }
+
+    public void removeDeadMinions() {
+        getActivePlayer().getBoard().removeDeadMinions();
+        getNonActivePlayer().getBoard().removeDeadMinions();
     }
 
     private void turnBeginDraw() {
@@ -222,9 +229,14 @@ public class GameState {
                 turnStage = TurnStage.CARD_PLAY;
                 changeActivePlayer();
                 turnBeginDraw();
+                refreshMinions();
                 break;
             }
         }
+    }
+
+    void refreshMinions() {
+        getActivePlayer().getBoard().refreshMinions();
     }
 
     public GameState createExample() {

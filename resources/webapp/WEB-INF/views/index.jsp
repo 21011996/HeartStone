@@ -25,10 +25,10 @@
         <h4>Turn stage: ${gameState.getTurnStage().toString()}</h4>
     </form:form>
     <form:form modelAttribute="gameState" method="GET" action="/end-stage">
-        <c:if test="${playerNo == 1}"><input type="submit" value="End stage"
-                                             onclick="form.action='/end-stage1';"></c:if>
-        <c:if test="${playerNo == 2}"><input type="submit" value="End stage"
-                                             onclick="form.action='/end-stage2';"></c:if>
+        <c:if test="${playerNo == 1 && gameState.getActivePlayer().getId() == 1}"><input type="submit" value="End stage"
+                                                                                         onclick="form.action='/end-stage1';"></c:if>
+        <c:if test="${playerNo == 2 && gameState.getActivePlayer().getId() == 2}"><input type="submit" value="End stage"
+                                                                                         onclick="form.action='/end-stage2';"></c:if>
     </form:form>
     <h3>Enemy Board</h3>
     <form:form modelAttribute="gameState" method="GET" action="/game">

@@ -11,6 +11,15 @@ public abstract class Minion extends Card {
     public int defaultHealth;
     public int currentHealth = defaultHealth;
     public int attack;
+    public boolean exhausted = true;
+
+    public boolean isExhausted() {
+        return exhausted;
+    }
+
+    public void setExhausted(boolean exhausted) {
+        this.exhausted = exhausted;
+    }
 
     public int getDefaultHealth() {
         return defaultHealth;

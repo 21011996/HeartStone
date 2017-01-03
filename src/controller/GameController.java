@@ -76,6 +76,7 @@ public class GameController {
             return "index";
         } else {
             gameState.getActivePlayer().playCard(id, 0, gameState);
+            gameState.removeDeadMinions();
             prepareModelMap(map, gameState, gameState.getActivePlayer().getId());
             return "redirect:/get-player";
         }
@@ -106,8 +107,7 @@ public class GameController {
                 break;
             }
         }
-        gameState.getActivePlayer().getBoard().removeDeadMinions();
-        gameState.getNonActivePlayer().getBoard().removeDeadMinions();
+        gameState.removeDeadMinions();
 
         prepareModelMap(map, gameState, gameState.getActivePlayer().getId());
         return "redirect:/get-player";
