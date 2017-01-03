@@ -25,15 +25,16 @@
         <h4>Turn stage: ${gameState.getTurnStage().toString()}</h4>
     </form:form>
     <form:form modelAttribute="gameState" method="GET" action="/end-stage">
-        <c:if test="${playerNo == 1}"><input type="submit" value="End stage"
-                                             onclick="form.action='/end-stage1';"></c:if>
-        <c:if test="${playerNo == 2}"><input type="submit" value="End stage"
-                                             onclick="form.action='/end-stage2';"></c:if>
+        <c:if test="${playerNo == 1 && gameState.getActivePlayer().getId() == 1}"><input type="submit" value="End stage"
+                                                                                         onclick="form.action='/end-stage1';"></c:if>
+        <c:if test="${playerNo == 2 && gameState.getActivePlayer().getId() == 2}"><input type="submit" value="End stage"
+                                                                                         onclick="form.action='/end-stage2';"></c:if>
     </form:form>
     <h3>Enemy Board</h3>
     <form:form modelAttribute="gameState" method="GET" action="/game">
+        <h4>Enemy hero: ${gameState.getNonPlayer(playerNo).getHero().getName()}
+            (Health: ${gameState.getNonPlayer(playerNo).getHero().getCurrentHealth()})</h4>
         <table border="1">
-            <h4>Hero: ${gameState.getNonPlayer(playerNo).getHero()} (Health: ${gameState.getNonPlayer(playerNo).getHero().getCurrentHealth()})</h4>
             <tr>
                 <c:forEach var="card" items="${gameState.getNonPlayer(playerNo).getBoard().getCards()}">
                     <td colspan="2">${card.getName()}</td>
@@ -51,7 +52,6 @@
     <h3>Your Board</h3>
     <form:form modelAttribute="gameState" method="GET" action="/game">
         <table border="1">
-            <h4>Hero: ${gameState.getActivePlayer().getHero()} (Health: ${gameState.getActivePlayer().getHero().getCurrentHealth()})</h4>
             <tr>
                 <c:forEach var="card" items="${gameState.getPlayer(playerNo).getBoard().getCards()}">
                     <td colspan="2">${card.getName()}</td>
@@ -65,6 +65,8 @@
                 </c:forEach>
             </tr>
         </table>
+        <h4>Your hero: ${gameState.getPlayer(playerNo).getHero().getName()}
+            (Health: ${gameState.getPlayer(playerNo).getHero().getCurrentHealth()})</h4>
     </form:form>
     <h3>Your Hand</h3>
     <form:form modelAttribute="gameState" method="GET" action="/game">
@@ -86,8 +88,11 @@
                     <tr>
                         <td>
                             <form:select path="card">
-                                <form:option value="NONE">Choose one</form:option>
-                                <form:options items="${gameState.getOptions()}"></form:options>
+                                <c:forEach items="${gameState.getOptions()}" var="option">
+                                    <option value="${option.getId()}">
+                                            ${option.getName()}
+                                    </option>
+                                </c:forEach>
                             </form:select>
                         </td>
                         <td><input type="submit" value="choose" onclick="form.action='/play-card';"></td>

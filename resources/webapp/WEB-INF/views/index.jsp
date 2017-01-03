@@ -88,8 +88,11 @@
                     <tr>
                         <td>
                             <form:select path="card">
-                                <form:option value="NONE">Choose one</form:option>
-                                <form:options items="${gameState.getOptions()}"></form:options>
+                                <c:forEach items="${gameState.getOptions()}" var="option">
+                                    <option value="${option.getId()}">
+                                            ${option.getName()}
+                                    </option>
+                                </c:forEach>
                             </form:select>
                         </td>
                         <td><input type="submit" value="choose" onclick="form.action='/play-card';"></td>
