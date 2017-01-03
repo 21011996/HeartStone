@@ -90,7 +90,7 @@
                             <form:select path="card">
                                 <c:forEach items="${gameState.getOptions()}" var="option">
                                     <option value="${option.getId()}">
-                                            ${option.getName()}
+                                            ${option.toString()}
                                     </option>
                                 </c:forEach>
                             </form:select>
