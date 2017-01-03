@@ -10,6 +10,7 @@ public abstract class Card {
     public CardClass cardClass;
     public int manaCost;
     public String name;
+    private int id = 0;
 
     public RequiredTarget requiredTarget;
 
@@ -34,5 +35,13 @@ public abstract class Card {
     @Override
     public String toString() {
         return getName() + " (" + getManaCost() + ")";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
