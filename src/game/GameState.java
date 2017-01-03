@@ -146,13 +146,11 @@ public class GameState {
         Player currentPlayer = getActivePlayer();
         switch (turnStage) {
             case CARD_PLAY:
-                //TODO check manacost
                 return filterByMana(currentPlayer.getHand().getCards());
             case ATTACK:
                 //TODO fix super mega mindfury and charge
                 return currentPlayer.getBoard().getMinions();
             case HERO_POWER:
-                //TODO check manacost
                 return filterByMana(((Hero) currentPlayer.getHero()).getHeroPower());
             default:
                 return new ArrayList<>();
@@ -162,6 +160,12 @@ public class GameState {
     private ArrayList<Card> filterByMana(ArrayList<Card> cards) {
         ArrayList<Card> tmp = new ArrayList<>(cards);
         tmp.removeIf(x -> x.getManaCost() > getActivePlayer().getManaLeft());
+        return tmp;
+    }
+
+    private ArrayList<Card> filterExhausted(ArrayList<Card> cards) {
+        ArrayList<Card> tmp = new ArrayList<>(cards);
+        tmp.removeIf(x -> ((Minion)x).exhausted);
         return tmp;
     }
 
