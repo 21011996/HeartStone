@@ -17,7 +17,9 @@ import cards.priestCards.spells.HolySmite;
 import cards.priestCards.spells.MindControl;
 import cards.priestCards.spells.PowerWordShield;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author Ilya239.
