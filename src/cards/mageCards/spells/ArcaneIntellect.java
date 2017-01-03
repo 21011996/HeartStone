@@ -1,5 +1,6 @@
 package cards.mageCards.spells;
 
+import cards.Card;
 import cards.CardClass;
 import cards.RequiredTarget;
 import cards.Spell;
@@ -20,7 +21,7 @@ public class ArcaneIntellect extends Spell {
     }
 
     @Override
-    public void resolve(int target, GameState gameState) {
+    public void resolve(Card target, GameState gameState) {
         gameState.getActivePlayer().draw(2);
     }
 }

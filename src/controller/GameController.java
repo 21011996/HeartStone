@@ -2,8 +2,7 @@ package controller;
 
 import cards.Card;
 import cards.Minion;
-import cards.mageCards.spells.Frostbolt;
-import cards.priestCards.minions.NorthshireCleric;
+import cards.debug.DebugCard;
 import game.GameState;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -75,7 +74,7 @@ public class GameController {
             prepareModelMap(map, gameState, gameState.getActivePlayer().getId(), card1);
             return "index";
         } else {
-            gameState.getActivePlayer().playCard(id, 0, gameState);
+            gameState.getActivePlayer().playCard(id, new DebugCard(), gameState);
             gameState.removeDeadMinions();
             prepareModelMap(map, gameState, gameState.getActivePlayer().getId());
             return "redirect:/get-player";
@@ -84,18 +83,16 @@ public class GameController {
 
     @RequestMapping(value = "/play-target", method = RequestMethod.GET)
     public String playCardTarget(@RequestParam String card2, ModelMap map) {
-        int j = 0;
-        Card card = new NorthshireCleric();
+        Card card = new DebugCard();
         for (Card card3 : gameState.getSecondaryOption(cardToPlay)) {
-            if (card3.getName().equals(card2)) {
+            if (card3.toString().equals(card2)) {
                 card = card3;
                 break;
             }
-            j++;
         }
         switch (gameState.getTurnStage()) {
             case CARD_PLAY: {
-                gameState.getActivePlayer().playCard(id, j, gameState);
+                gameState.getActivePlayer().playCard(id, card, gameState);
                 break;
             }
             case ATTACK: {
@@ -103,7 +100,7 @@ public class GameController {
                 break;
             }
             case HERO_POWER: {
-                gameState.getActivePlayer().playCard(id, j, gameState);
+                gameState.getActivePlayer().playCard(id, card, gameState);
                 break;
             }
         }
@@ -116,7 +113,7 @@ public class GameController {
     private void prepareModelMap(ModelMap map, GameState gameState, int playerNo) {
         map.addAttribute("gameState", gameState);
         map.addAttribute("playerNo", playerNo);
-        map.addAttribute("cardPlay", new Frostbolt());
+        map.addAttribute("cardPlay", new DebugCard());
     }
 
     private void prepareModelMap(ModelMap map, GameState gameState, int playerNo, Card card) {

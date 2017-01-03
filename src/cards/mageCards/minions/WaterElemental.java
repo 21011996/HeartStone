@@ -1,5 +1,6 @@
 package cards.mageCards.minions;
 
+import cards.Card;
 import cards.CardClass;
 import cards.Minion;
 import game.GameState;
@@ -26,7 +27,7 @@ public class WaterElemental extends Minion {
     }
 
     @Override
-    public void resolve(int target, GameState gameState) {
+    public void resolve(Card target, GameState gameState) {
 
     }
 }

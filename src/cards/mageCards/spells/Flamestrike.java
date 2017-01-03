@@ -18,7 +18,7 @@ public class Flamestrike extends Spell {
     }
 
     @Override
-    public void resolve(int target, GameState gameState) {
+    public void resolve(Card target, GameState gameState) {
         for (Card minion : gameState.getNonActivePlayer().getBoard().getMinions()) {
             ((Minion) minion).takeDamage(4);
         }

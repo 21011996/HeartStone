@@ -37,7 +37,7 @@ public class Player {
         this.manaLeft = manaLeft;
     }
 
-    public void playCard(int id, int target, GameState gameState) {
+    public void playCard(int id, Card target, GameState gameState) {
         Card toPlay = hand.getCards().get(id);
         if (canPlay(toPlay)) {
             hand.playCard(id, target, gameState);
@@ -52,7 +52,7 @@ public class Player {
         return board.getMinion(id);
     }
 
-    public void removeMinion(int id) {
+    public void removeMinion(Card id) {
         board.removeMinion(id);
     }
 

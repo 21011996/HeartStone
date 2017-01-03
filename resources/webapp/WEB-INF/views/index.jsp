@@ -83,7 +83,7 @@
     </form:form>
     <form:form modelAttribute="gameState" method="GET" action="/play-card">
         <c:if test="${playerNo==gameState.getActivePlayer().getId()}">
-            <c:if test="${cardPlay.getName().equals('Frostbolt')}">
+            <c:if test="${cardPlay.getName().equals('S6a6t6a6n')}">
                 <table>
                     <tr>
                         <td>
@@ -96,7 +96,7 @@
                     </tr>
                 </table>
             </c:if>
-            <c:if test="${!cardPlay.getName().equals('Frostbolt')}">
+            <c:if test="${!cardPlay.getName().equals('S6a6t6a6n')}">
                 <table>
                     <tr>
                         <td>

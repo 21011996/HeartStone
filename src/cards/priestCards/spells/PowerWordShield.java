@@ -1,9 +1,6 @@
 package cards.priestCards.spells;
 
-import cards.CardClass;
-import cards.Minion;
-import cards.RequiredTarget;
-import cards.Spell;
+import cards.*;
 import game.GameState;
 
 /**
@@ -21,8 +18,8 @@ public class PowerWordShield extends Spell{
     }
 
     @Override
-    public void resolve(int target, GameState gameState) {
+    public void resolve(Card target, GameState gameState) {
         gameState.getActivePlayer().draw(1);
-        ((Minion) gameState.getActivePlayer().getMinion(target)).addHealth(2);
+        ((Minion) target).addHealth(2);
     }
 }

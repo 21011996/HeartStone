@@ -1,5 +1,6 @@
 package cards.commonCards.minions;
 
+import cards.Card;
 import cards.CardClass;
 import cards.Minion;
 import game.GameState;
@@ -25,7 +26,7 @@ public class FenCreeper extends Minion {
     }
 
     @Override
-    public void resolve(int target, GameState gameState) {
+    public void resolve(Card target, GameState gameState) {
 
     }
 }

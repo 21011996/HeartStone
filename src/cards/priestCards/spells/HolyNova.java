@@ -18,7 +18,7 @@ public class HolyNova extends Spell{
     }
 
     @Override
-    public void resolve(int target, GameState gameState) {
+    public void resolve(Card target, GameState gameState) {
         for (Card card : gameState.getNonActivePlayer().getBoard().getMinions()) {
             ((Minion) card).takeDamage(2);
         }

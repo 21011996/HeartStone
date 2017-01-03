@@ -53,7 +53,7 @@ public class Board {
         });
     }
 
-    public void removeMinion(int id) {
+    public void removeMinion(Card id) {
         minions.remove(id);
     }
 }

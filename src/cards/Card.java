@@ -29,7 +29,7 @@ public abstract class Card {
         return name;
     }
 
-    public abstract void resolve(int target, GameState gameState);
+    public abstract void resolve(Card target, GameState gameState);
 
     @Override
     public String toString() {
