@@ -149,7 +149,7 @@ public class GameState {
                 return filterByMana(currentPlayer.getHand().getCards());
             case ATTACK:
                 //TODO fix super mega mindfury and charge
-                return currentPlayer.getBoard().getMinions();
+                return filterExhausted(currentPlayer.getBoard().getMinions());
             case HERO_POWER:
                 return filterByMana(((Hero) currentPlayer.getHero()).getHeroPower());
             default:
@@ -165,7 +165,7 @@ public class GameState {
 
     private ArrayList<Card> filterExhausted(ArrayList<Card> cards) {
         ArrayList<Card> tmp = new ArrayList<>(cards);
-        tmp.removeIf(x -> ((Minion)x).exhausted);
+        tmp.removeIf(x -> ((Minion)x).isExhausted());
         return tmp;
     }
 
