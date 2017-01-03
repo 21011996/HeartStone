@@ -11,6 +11,10 @@ public abstract class Hero extends Minion {
     public HeroStatus heroStatus = HeroStatus.ALIVE;
     public HeroPower heroPower;
 
+    public HeroStatus getHeroStatus() {
+        return heroStatus;
+    }
+
     public ArrayList<Card> getHeroPower() {
         return new ArrayList<>(Collections.singletonList(heroPower));
     }
