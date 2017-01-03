@@ -11,6 +11,12 @@ public abstract class Card {
     public int manaCost;
     public String name;
 
+    public RequiredTarget requiredTarget;
+
+    public RequiredTarget getRequiredTarget() {
+        return requiredTarget;
+    }
+
     public CardClass getCardClass() {
         return cardClass;
     }
