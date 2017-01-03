@@ -1,6 +1,9 @@
 package game;
 
-import cards.*;
+import cards.Card;
+import cards.Hero;
+import cards.Minion;
+import cards.Spell;
 import cards.commonCards.minions.*;
 import cards.mageCards.Medivh;
 import cards.mageCards.minions.WaterElemental;
@@ -14,9 +17,7 @@ import cards.priestCards.spells.HolySmite;
 import cards.priestCards.spells.MindControl;
 import cards.priestCards.spells.PowerWordShield;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @author Ilya239.
@@ -180,13 +181,13 @@ public class GameState {
     public ArrayList<Card> getSecondaryOption(Card card) {
         ArrayList<Card> target = new ArrayList<>();
         if (card instanceof Spell) {
-            switch (((Spell) card).getRequiredTarget()) {
+            switch (card.getRequiredTarget()) {
                 case ENEMY:
-                    target = getNonActivePlayer().getBoard().getMinions();
+                    target.addAll(getNonActivePlayer().getBoard().getMinions());
                     target.add(getNonActivePlayer().getHero());
                     break;
                 case FRIENDLY:
-                    target = getActivePlayer().getBoard().getMinions();
+                    target.addAll(getActivePlayer().getBoard().getMinions());
                     target.add(getActivePlayer().getHero());
                     break;
                 case NONE:
@@ -194,9 +195,24 @@ public class GameState {
             }
             return target;
         } else if (card instanceof Minion) {
-            target = getNonActivePlayer().getBoard().getMinions();
-            target.add(getNonActivePlayer().getHero());
-            return target;
+            switch (getTurnStage()) {
+                case ATTACK:
+                    target.addAll(getNonActivePlayer().getBoard().getMinions());
+                    target.add(getNonActivePlayer().getHero());
+                    return target;
+                case CARD_PLAY:
+                    switch (card.getRequiredTarget()) {
+                        case ENEMY:
+                            target = getNonActivePlayer().getBoard().getMinions();
+                            break;
+                        case FRIENDLY:
+                            target = getActivePlayer().getBoard().getMinions();
+                            break;
+                        case NONE:
+                            return new ArrayList<>();
+                    }
+                    return target;
+            }
         }
         return new ArrayList<>();
     }

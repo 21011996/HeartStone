@@ -1,9 +1,6 @@
 package cards.mageCards;
 
-import cards.CardClass;
-import cards.HeroPower;
-import cards.Minion;
-import cards.RequiredTarget;
+import cards.*;
 import game.GameState;
 
 /**
@@ -19,7 +16,7 @@ public class Fireblast extends HeroPower {
     }
 
     @Override
-    public void resolve(int target, GameState gameState) {
-        ((Minion) gameState.getNonActivePlayer().getMinion(target)).takeDamage(1);
+    public void resolve(Card target, GameState gameState) {
+        ((Minion) target).takeDamage(1);
     }
 }

@@ -25,7 +25,7 @@ public class Hand {
         this.cards.addAll(cards);
     }
 
-    public void playCard(int id, int target, GameState gameState) {
+    public void playCard(int id, Card target, GameState gameState) {
         Card playCard = this.cards.remove(id);
         playCard.resolve(target, gameState);
         if (playCard instanceof Minion) {

@@ -1,5 +1,6 @@
 package cards.priestCards.minions;
 
+import cards.Card;
 import cards.CardClass;
 import cards.Minion;
 import game.GameState;
@@ -22,7 +23,7 @@ public class NorthshireCleric extends Minion {
     }
 
     @Override
-    public void resolve(int target, GameState gameState) {
+    public void resolve(Card target, GameState gameState) {
 
     }
 }

@@ -34,6 +34,7 @@ public abstract class Minion extends Card {
     }
 
     public void trade(Card card) {
+        setExhausted(true);
         if (card instanceof Hero) {
             ((Hero) card).takeDamage(getAttack());
         } else if (card instanceof Minion) {

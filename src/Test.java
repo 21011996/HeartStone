@@ -1,4 +1,8 @@
-import game.GameState;
+import cards.Minion;
+import cards.commonCards.minions.RazorfenHunter;
+import cards.mageCards.minions.WaterElemental;
+
+import java.util.ArrayList;
 
 /**
  * @author Ilya239.
@@ -6,7 +10,11 @@ import game.GameState;
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-        GameState gameState = new GameState().createExample();
-        gameState.nextStage();
+        ArrayList<Minion> test = new ArrayList<>();
+        test.add(new WaterElemental());
+        test.add(new RazorfenHunter());
+        ArrayList<Minion> testo = new ArrayList<>();
+        testo.addAll(test);
+        testo.get(0).takeDamage(3);
     }
 }

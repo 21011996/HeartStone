@@ -1,9 +1,8 @@
 package cards.mageCards;
 
+import cards.Card;
 import cards.CardClass;
 import cards.Hero;
-import cards.HeroPower;
-import cards.HeroStatus;
 import game.GameState;
 
 /**
@@ -20,7 +19,7 @@ public class Medivh extends Hero {
     }
 
     @Override
-    public void resolve(int target, GameState gameState) {
+    public void resolve(Card target, GameState gameState) {
 
     }
 }

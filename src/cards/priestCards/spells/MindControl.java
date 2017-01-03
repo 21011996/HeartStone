@@ -1,9 +1,6 @@
 package cards.priestCards.spells;
 
-import cards.CardClass;
-import cards.Minion;
-import cards.RequiredTarget;
-import cards.Spell;
+import cards.*;
 import game.GameState;
 
 /**
@@ -22,8 +19,8 @@ public class MindControl extends Spell{
     }
 
     @Override
-    public void resolve(int target, GameState gameState) {
-        Minion targeted = (Minion) gameState.getNonActivePlayer().getMinion(target);
+    public void resolve(Card target, GameState gameState) {
+        Minion targeted = (Minion) target;
         gameState.getNonActivePlayer().removeMinion(target);
         gameState.getActivePlayer().addMinion(targeted);
     }

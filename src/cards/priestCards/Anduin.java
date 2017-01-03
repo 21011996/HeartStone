@@ -1,5 +1,6 @@
 package cards.priestCards;
 
+import cards.Card;
 import cards.CardClass;
 import cards.Hero;
 import game.GameState;
@@ -18,6 +19,6 @@ public class Anduin extends Hero{
     }
 
     @Override
-    public void resolve(int target, GameState gameState) {
+    public void resolve(Card target, GameState gameState) {
     }
 }

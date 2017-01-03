@@ -16,8 +16,7 @@ public class LesserHeal extends HeroPower {
     }
 
     @Override
-    public void resolve(int target, GameState gameState) {
-        Card targeted = gameState.getActivePlayer().getMinion(target);
-        ((Minion) targeted).heal(2);
+    public void resolve(Card target, GameState gameState) {
+        ((Minion) target).heal(2);
     }
 }
