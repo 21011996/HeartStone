@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class GameController {
     private GameState gameState = new GameState().createExample();
     private Card cardToPlay;
+    private int id;
 
     @RequestMapping(value = "/game", method = RequestMethod.GET)
     public String getGame(ModelMap map) {
@@ -59,18 +60,20 @@ public class GameController {
 
     @RequestMapping(value = "/play-card", method = RequestMethod.GET)
     public String playCard(@RequestParam String card, ModelMap map) {
-        cardToPlay = new DebugCard();
+        Card card1 = null;
         for (Card card2 : gameState.getOptions()) {
-            if (card2.toString().equals(card)) {
-                cardToPlay = card2;
+            if (card2.getId() == Integer.parseInt(card)) {
+                card1 = card2;
                 break;
             }
+            id++;
         }
-        if (gameState.getSecondaryOption(cardToPlay).size() != 0) {
-            prepareModelMap(map, gameState, gameState.getActivePlayer().getId(), cardToPlay);
+        cardToPlay = card1;
+        if (gameState.getSecondaryOption(card1).size() != 0) {
+            prepareModelMap(map, gameState, gameState.getActivePlayer().getId(), card1);
             return "index";
         } else {
-            gameState.getActivePlayer().playCard(cardToPlay, new DebugCard(), gameState);
+            gameState.getActivePlayer().playCard(id, new DebugCard(), gameState);
             gameState.removeDeadMinions();
             prepareModelMap(map, gameState, gameState.getActivePlayer().getId());
             return "redirect:/get-player";
@@ -88,15 +91,15 @@ public class GameController {
         }
         switch (gameState.getTurnStage()) {
             case CARD_PLAY: {
-                gameState.getActivePlayer().playCard(cardToPlay, card, gameState);
+                gameState.getActivePlayer().playCard(id, card, gameState);
                 break;
             }
             case ATTACK: {
-                ((Minion) cardToPlay).trade(card);
+                ((Minion) gameState.getActivePlayer().getBoard().getMinion(id)).trade(card);
                 break;
             }
             case HERO_POWER: {
-                gameState.getActivePlayer().playCard(cardToPlay, card, gameState);
+                gameState.getActivePlayer().playCard(id, card, gameState);
                 break;
             }
         }
