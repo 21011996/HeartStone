@@ -12,14 +12,14 @@ import java.util.LinkedList;
  *         Created on 23.12.2016.
  */
 public class Deck {
-    public LinkedList<Card> deck;
+    private LinkedList<Card> deck;
+    private int currId = 0;
 
     public Deck(Card... cards) {
         deck = new LinkedList<>();
         deck.addAll(Arrays.asList(cards));
-        int i = 0;
         for (Card card : deck) {
-            card.setId(i++);
+            card.setId(currId++);
         }
         Collections.shuffle(deck);
     }
@@ -27,9 +27,8 @@ public class Deck {
     public Deck(ArrayList<Card> deck) {
         this.deck = new LinkedList<>();
         this.deck.addAll(deck);
-        int i = 0;
         for (Card card : deck) {
-            card.setId(i++);
+            card.setId(currId++);
         }
         Collections.shuffle(this.deck);
     }

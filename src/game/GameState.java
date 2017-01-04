@@ -1,9 +1,6 @@
 package game;
 
-import cards.Card;
-import cards.Hero;
-import cards.Minion;
-import cards.Spell;
+import cards.*;
 import cards.commonCards.minions.*;
 import cards.mageCards.Medivh;
 import cards.mageCards.minions.WaterElemental;
@@ -25,7 +22,7 @@ import java.util.ArrayList;
  */
 public class GameState {
     public String card;
-    public String card2;
+    private String card2;
     private Player player1;
     private Player player2;
     private TurnStage turnStage;
@@ -78,6 +75,11 @@ public class GameState {
         }
     }
 
+    public boolean bothAlive() {
+        return ((Hero) getActivePlayer().getHero()).getHeroStatus() == HeroStatus.ALIVE
+                && ((Hero) getNonActivePlayer().getHero()).getHeroStatus() == HeroStatus.ALIVE;
+    }
+
     public Player getPlayer1() {
         return player1;
     }
@@ -102,7 +104,7 @@ public class GameState {
         this.turn = turn;
     }
 
-    public void initGameState() {
+    private void initGameState() {
         turn = 1;
         player1.draw(3);
         player2.draw(3);
@@ -186,9 +188,15 @@ public class GameState {
                     target.addAll(getNonActivePlayer().getBoard().getMinions());
                     target.add(getNonActivePlayer().getHero());
                     break;
+                case ENEMY_MINIONS:
+                    target.addAll(getNonActivePlayer().getBoard().getMinions());
+                    break;
                 case FRIENDLY:
                     target.addAll(getActivePlayer().getBoard().getMinions());
                     target.add(getActivePlayer().getHero());
+                    break;
+                case FRIENDLY_MINIONS:
+                    target.addAll(getActivePlayer().getBoard().getMinions());
                     break;
                 case NONE:
                     return new ArrayList<>();
@@ -203,9 +211,11 @@ public class GameState {
                 case CARD_PLAY:
                     switch (card.getRequiredTarget()) {
                         case ENEMY:
+                        case ENEMY_MINIONS:
                             target = getNonActivePlayer().getBoard().getMinions();
                             break;
                         case FRIENDLY:
+                        case FRIENDLY_MINIONS:
                             target = getActivePlayer().getBoard().getMinions();
                             break;
                         case NONE:
@@ -258,7 +268,7 @@ public class GameState {
         }
     }
 
-    void refreshMinions() {
+    private void refreshMinions() {
         getActivePlayer().getBoard().refreshMinions();
     }
 

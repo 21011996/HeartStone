@@ -20,100 +20,187 @@
 </form:form>
 
 <form:form modelAttribute="playerNo" method="get" action="/game">
-    <form:form modelAttribute="gameState" method="GET" action="/game">
-        <h3>Currently active: Player ${gameState.getActivePlayer().getId()}</h3>
-        <h4>Turn stage: ${gameState.getTurnStage().toString()}</h4>
-    </form:form>
-    <form:form modelAttribute="gameState" method="GET" action="/end-stage">
-        <c:if test="${playerNo == 1 && gameState.getActivePlayer().getId() == 1}"><input type="submit" value="End stage"
-                                                                                         onclick="form.action='/end-stage1';"></c:if>
-        <c:if test="${playerNo == 2 && gameState.getActivePlayer().getId() == 2}"><input type="submit" value="End stage"
-                                                                                         onclick="form.action='/end-stage2';"></c:if>
-    </form:form>
-    <h3>Enemy Board</h3>
-    <form:form modelAttribute="gameState" method="GET" action="/game">
-        <h4>Enemy hero: ${gameState.getNonPlayer(playerNo).getHero().getName()}
-            (Health: ${gameState.getNonPlayer(playerNo).getHero().getCurrentHealth()})</h4>
-        <table border="1">
-            <tr>
-                <c:forEach var="card" items="${gameState.getNonPlayer(playerNo).getBoard().getCards()}">
-                    <td colspan="2">${card.getName()}</td>
+    <form:form modelAttribute="gameState" method="get" action="/game">
+        <c:if test="${gameState.bothAlive()}">
 
-                </c:forEach>
-            </tr>
-            <tr>
-                <c:forEach var="card" items="${gameState.getNonPlayer(playerNo).getBoard().getCards()}">
-                    <td>${card.getAttack()}</td>
-                    <td>${card.getCurrentHealth()}</td>
-                </c:forEach>
-            </tr>
-        </table>
-    </form:form>
-    <h3>Your Board</h3>
-    <form:form modelAttribute="gameState" method="GET" action="/game">
-        <table border="1">
-            <tr>
-                <c:forEach var="card" items="${gameState.getPlayer(playerNo).getBoard().getCards()}">
-                    <td colspan="2">${card.getName()}</td>
+            <form:form modelAttribute="gameState" method="GET" action="/game">
+                <h3>Currently active: Player ${gameState.getActivePlayer().getId()}</h3>
+                <h4>Turn stage: ${gameState.getTurnStage().toString()}</h4>
+            </form:form>
 
-                </c:forEach>
-            </tr>
-            <tr>
-                <c:forEach var="card" items="${gameState.getPlayer(playerNo).getBoard().getCards()}">
-                    <td>${card.getAttack()}</td>
-                    <td>${card.getCurrentHealth()}</td>
-                </c:forEach>
-            </tr>
-        </table>
-        <h4>Your hero: ${gameState.getPlayer(playerNo).getHero().getName()}
-            (Health: ${gameState.getPlayer(playerNo).getHero().getCurrentHealth()})</h4>
-    </form:form>
-    <h3>Your Hand</h3>
-    <form:form modelAttribute="gameState" method="GET" action="/game">
-        <table border="1">
-            <tr>
-                <c:forEach var="card" items="${gameState.getPlayer(playerNo).getHand().getCards()}">
-                    <td>${card.getName()}</td>
-                </c:forEach>
-            </tr>
-        </table>
-    </form:form>
-    <form:form modelAttribute="gameState" method="GET" action="/game">
-        <h4>Mana left: ${gameState.getPlayer(playerNo).getManaLeft()}</h4>
-    </form:form>
-    <form:form modelAttribute="gameState" method="GET" action="/play-card">
-        <c:if test="${playerNo==gameState.getActivePlayer().getId()}">
-            <c:if test="${cardPlay.getName().equals('S6a6t6a6n')}">
-                <table>
+            <form:form modelAttribute="gameState" method="GET" action="/end-stage">
+                <c:if test="${playerNo == 1 && gameState.getActivePlayer().getId() == 1}"><input type="submit"
+                                                                                                 value="End stage"
+                                                                                                 onclick="form.action='/end-stage1';"></c:if>
+                <c:if test="${playerNo == 2 && gameState.getActivePlayer().getId() == 2}"><input type="submit"
+                                                                                                 value="End stage"
+                                                                                                 onclick="form.action='/end-stage2';"></c:if>
+            </form:form>
+
+            <form:form modelAttribute="gameState" method="get" action="/game">
+                <h3>Enemy hero</h3>
+                <table border="1">
                     <tr>
-                        <td>
-                            <form:select path="card">
-                                <c:forEach items="${gameState.getOptions()}" var="option">
-                                    <option value="${option.getId()}">
-                                            ${option.toString()}
-                                    </option>
-                                </c:forEach>
-                            </form:select>
+                        <td><span
+                                style="font-weight: bold">${gameState.getNonPlayer(playerNo).getHero().getName()}</span>
                         </td>
-                        <td><input type="submit" value="choose" onclick="form.action='/play-card';"></td>
+                    </tr>
+                    <tr>
+                        <td>Health: <span
+                                style="font-weight: bold;color: #ff003f">${gameState.getNonPlayer(playerNo).getHero().getCurrentHealth()}</span>
+                        </td>
                     </tr>
                 </table>
-            </c:if>
-            <c:if test="${!cardPlay.getName().equals('S6a6t6a6n')}">
-                <table>
+            </form:form>
+
+            <h3>Enemy Board</h3>
+            <form:form modelAttribute="gameState" method="GET" action="/game">
+                <table border="1">
                     <tr>
-                        <td>
-                            <form:select path="card2">
-                                <form:option value="NONE">Choose target</form:option>
-                                <form:options items="${gameState.getSecondaryOption(cardPlay)}"></form:options>
-                            </form:select>
-                        </td>
-                        <td><input type="submit" value="choose" onclick="form.action='/play-target';"></td>
+                        <c:forEach var="card" items="${gameState.getNonPlayer(playerNo).getBoard().getCards()}">
+
+                            <c:if test="${card.isExhausted()}">
+                                <td colspan="2"><span style="color: cornflowerblue; ">${card.getName()}</span></td>
+                            </c:if>
+
+                            <c:if test="${!card.isExhausted()}">
+                                <td colspan="2">${card.getName()}</td>
+                            </c:if>
+
+                        </c:forEach>
+                    </tr>
+                    <tr>
+                        <c:forEach var="card" items="${gameState.getNonPlayer(playerNo).getBoard().getCards()}">
+                            <td>${card.getAttack()}</td>
+                            <td>${card.getCurrentHealth()}</td>
+                        </c:forEach>
                     </tr>
                 </table>
+            </form:form>
+
+            <h3>Your Board</h3>
+            <form:form modelAttribute="gameState" method="GET" action="/game">
+                <table border="1">
+                    <tr>
+                        <c:forEach var="card" items="${gameState.getPlayer(playerNo).getBoard().getCards()}">
+
+                            <c:if test="${card.isExhausted()}">
+                                <td colspan="2"><span style="color: cornflowerblue; ">${card.getName()}</span></td>
+                            </c:if>
+
+                            <c:if test="${!card.isExhausted()}">
+                                <td colspan="2">${card.getName()}</td>
+                            </c:if>
+
+                        </c:forEach>
+                    </tr>
+                    <tr>
+                        <c:forEach var="card" items="${gameState.getPlayer(playerNo).getBoard().getCards()}">
+                            <td>${card.getAttack()}</td>
+                            <td>${card.getCurrentHealth()}</td>
+                        </c:forEach>
+                    </tr>
+                </table>
+            </form:form>
+
+            <form:form modelAttribute="gameState" method="get" action="/game">
+                <h3>Your hero</h3>
+                <table border="1">
+                    <tr>
+                        <td><span style="font-weight: bold">${gameState.getPlayer(playerNo).getHero().getName()}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Health: <span
+                                style="font-weight: bold;color: #ff003f">${gameState.getPlayer(playerNo).getHero().getCurrentHealth()}</span>
+                        </td>
+                    </tr>
+                </table>
+            </form:form>
+
+            <h3>Your Hand</h3>
+            <form:form modelAttribute="gameState" method="GET" action="/game">
+                <table border="1">
+                    <tr>
+                        <c:forEach var="card" items="${gameState.getPlayer(playerNo).getHand().getCards()}">
+                            <td><span style="font-weight: bold;color: blue"> ${card.getManaCost()}</span></td>
+                        </c:forEach>
+                    </tr>
+                    <tr>
+                        <c:forEach var="card" items="${gameState.getPlayer(playerNo).getHand().getCards()}">
+                            <td>${card.getName()}</td>
+                        </c:forEach>
+                    </tr>
+                </table>
+            </form:form>
+
+            <form:form modelAttribute="gameState" method="GET" action="/game">
+                <h4>Mana left: <span
+                        style="font-weight: bold;color: blue">${gameState.getPlayer(playerNo).getManaLeft()}</span>
+                </h4>
+            </form:form>
+
+            <form:form modelAttribute="gameState" method="GET" action="/play-card">
+
+                <c:if test="${playerNo==gameState.getActivePlayer().getId()}">
+
+                    <c:if test="${cardPlay.getName().equals('S6a6t6a6n')}">
+                        <table>
+                            <tr>
+                                <td>
+                                    <form:select path="card">
+                                        <c:forEach items="${gameState.getOptions()}" var="option">
+                                            <option value="${option.getId()}">
+                                                    ${option.toString()}
+                                            </option>
+                                        </c:forEach>
+                                    </form:select>
+                                </td>
+                                <td><input type="submit" value="choose" onclick="form.action='/play-card';"></td>
+                            </tr>
+                        </table>
+                    </c:if>
+
+                    <c:if test="${!cardPlay.getName().equals('S6a6t6a6n')}">
+                        <h4>Playing: ${cardPlay.getName()}</h4>
+                        <table>
+                            <tr>
+                                <td>
+                                    <form:select path="card2">
+                                        <c:forEach items="${gameState.getSecondaryOption(cardPlay)}" var="option">
+                                            <option value="${option.toString()}">
+                                                    ${option.getName()}
+                                            </option>
+                                        </c:forEach>
+                                    </form:select>
+                                </td>
+                                <td><input type="submit" value="choose" onclick="form.action='/play-target';"></td>
+                            </tr>
+                        </table>
+                    </c:if>
+
+                </c:if>
+
+            </form:form>
+        </c:if>
+
+        <c:if test="${!gameState.bothAlive()}">
+            <c:if test="${gameState.getPlayer(playerNo).alive()}">
+                <h1>You Won!</h1>
             </c:if>
+            <c:if test="${!gameState.getPlayer(playerNo).alive()}">
+                <h1>You Lost!</h1>
+            </c:if>
+            <form:form method="GET" action="/refresh">
+                <table>
+                    <tr>
+                        <td><input type="submit" value="refresh" onclick="form.action='/refresh';"></td>
+                    </tr>
+                </table>
+            </form:form>
         </c:if>
     </form:form>
+
 </form:form>
 
 

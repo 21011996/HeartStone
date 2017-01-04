@@ -5,7 +5,7 @@ import cards.CardClass;
 import cards.Minion;
 import game.GameState;
 
-import static cards.RequiredTarget.FRIENDLY;
+import static cards.RequiredTarget.FRIENDLY_MINIONS;
 
 /**
  * @author Ilya239.
@@ -22,7 +22,7 @@ public class KabalTalonpriest extends Minion {
         attack = 3;
 
         name = "Kabal Talonpriest";
-        requiredTarget = FRIENDLY;
+        requiredTarget = FRIENDLY_MINIONS;
     }
 
     @Override

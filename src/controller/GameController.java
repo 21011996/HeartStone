@@ -25,6 +25,14 @@ public class GameController {
         return "index";
     }
 
+    @RequestMapping(value = "/refresh", method = RequestMethod.GET)
+    public String refresh(ModelMap map) {
+        gameState = new GameState().createExample();
+        cardToPlay = new DebugCard();
+        prepareModelMap(map, gameState, 1);
+        return "index";
+    }
+
     @RequestMapping(value = "/get-player", method = RequestMethod.GET)
     public String getGamePlayer(@RequestParam String playerNo, ModelMap map) {
         prepareModelMap(map, gameState, Integer.parseInt(playerNo));
@@ -45,14 +53,18 @@ public class GameController {
 
     @RequestMapping(value = "/end-stage1", method = RequestMethod.GET)
     public String endStage1(ModelMap map) {
-        gameState.nextStage();
+        do {
+            gameState.nextStage();
+        } while (gameState.getOptions().isEmpty());
         prepareModelMap(map, gameState, 1);
         return "redirect:/get-player";
     }
 
     @RequestMapping(value = "/end-stage2", method = RequestMethod.GET)
     public String endStage2(ModelMap map) {
-        gameState.nextStage();
+        do {
+            gameState.nextStage();
+        } while (gameState.getOptions().isEmpty());
         prepareModelMap(map, gameState, 2);
         return "redirect:/get-player";
     }

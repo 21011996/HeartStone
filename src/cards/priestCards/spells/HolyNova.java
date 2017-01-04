@@ -19,9 +19,11 @@ public class HolyNova extends Spell{
 
     @Override
     public void resolve(Card target, GameState gameState) {
+        ((Minion) gameState.getNonActivePlayer().getHero()).takeDamage(2);
         for (Card card : gameState.getNonActivePlayer().getBoard().getMinions()) {
             ((Minion) card).takeDamage(2);
         }
+        ((Minion) gameState.getActivePlayer().getHero()).heal(2);
         for (Card card : gameState.getActivePlayer().getBoard().getMinions()) {
             ((Minion) card).heal(2);
         }

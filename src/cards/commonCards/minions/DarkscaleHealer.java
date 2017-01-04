@@ -2,6 +2,7 @@ package cards.commonCards.minions;
 
 import cards.Card;
 import cards.CardClass;
+import cards.Hero;
 import cards.Minion;
 import game.GameState;
 
@@ -27,6 +28,7 @@ public class DarkscaleHealer extends Minion {
 
     @Override
     public void resolve(Card target, GameState gameState) {
+        ((Hero) gameState.getActivePlayer().getHero()).heal(2);
         for (Card card : gameState.getActivePlayer().getBoard().getMinions()) {
             ((Minion) card).heal(2);
         }

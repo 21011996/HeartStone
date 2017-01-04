@@ -14,7 +14,7 @@ public class FlameLance extends Spell {
         manaCost = 5;
 
         name = "Flame Lance";
-        requiredTarget = RequiredTarget.ENEMY;
+        requiredTarget = RequiredTarget.ENEMY_MINIONS;
     }
 
     @Override

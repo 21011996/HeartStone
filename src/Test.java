@@ -1,6 +1,9 @@
 import cards.Minion;
 import cards.commonCards.minions.RazorfenHunter;
 import cards.mageCards.minions.WaterElemental;
+import cards.priestCards.minions.NorthshireCleric;
+import cards.priestCards.spells.MindControl;
+import game.GameState;
 
 import java.util.ArrayList;
 
@@ -16,5 +19,8 @@ public class Test {
         ArrayList<Minion> testo = new ArrayList<>();
         testo.addAll(test);
         testo.get(0).takeDamage(3);
+        GameState gameState = new GameState().createExample();
+        gameState.getNonActivePlayer().getBoard().playMinion(new NorthshireCleric());
+        System.out.println(gameState.getSecondaryOption(new MindControl()));
     }
 }

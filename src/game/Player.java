@@ -2,6 +2,7 @@ package game;
 
 import cards.Card;
 import cards.Hero;
+import cards.HeroStatus;
 import cards.Minion;
 
 /**
@@ -23,6 +24,10 @@ public class Player {
         hand = new Hand();
 
         this.id = id;
+    }
+
+    public boolean alive() {
+        return hero.getHeroStatus() == HeroStatus.ALIVE;
     }
 
     public int getId() {

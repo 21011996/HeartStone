@@ -15,7 +15,7 @@ public class MindControl extends Spell{
 
         name = "Mind Control";
 
-        requiredTarget = RequiredTarget.ENEMY;
+        requiredTarget = RequiredTarget.ENEMY_MINIONS;
     }
 
     @Override
