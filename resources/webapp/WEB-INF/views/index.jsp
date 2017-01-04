@@ -8,7 +8,7 @@
 <head>
     <title>HeartStone</title>
 </head>
-<BODY>
+<body BACKGROUND="http://hdwallpaperbackgrounds.net/wp-content/uploads/2016/07/white-background-4.jpg">
 <h3>Select player</h3>
 <form:form method="GET" action="/get-player">
     <table>
@@ -72,7 +72,16 @@
                     <tr>
                         <c:forEach var="card" items="${gameState.getNonPlayer(playerNo).getBoard().getCards()}">
                             <td>${card.getAttack()}</td>
-                            <td>${card.getCurrentHealth()}</td>
+                            <td>
+                                <c:if test="${card.getCurrentHealth() == card.getDefaultHealth()}">
+                                    ${card.getCurrentHealth()}
+                                </c:if>
+                                <c:if test="${card.getCurrentHealth() != card.getDefaultHealth()}">
+                                    <span style="color: indianred">
+                                            ${card.getCurrentHealth()}
+                                    </span>
+                                </c:if>
+                            </td>
                         </c:forEach>
                     </tr>
                 </table>
@@ -97,7 +106,16 @@
                     <tr>
                         <c:forEach var="card" items="${gameState.getPlayer(playerNo).getBoard().getCards()}">
                             <td>${card.getAttack()}</td>
-                            <td>${card.getCurrentHealth()}</td>
+                            <td>
+                                <c:if test="${card.getCurrentHealth() == card.getDefaultHealth()}">
+                                    ${card.getCurrentHealth()}
+                                </c:if>
+                                <c:if test="${card.getCurrentHealth() != card.getDefaultHealth()}">
+                                    <span style="color: indianred">
+                                            ${card.getCurrentHealth()}
+                                    </span>
+                                </c:if>
+                            </td>
                         </c:forEach>
                     </tr>
                 </table>
@@ -144,7 +162,7 @@
 
                 <c:if test="${playerNo==gameState.getActivePlayer().getId()}">
 
-                    <c:if test="${cardPlay.getName().equals('S6a6t6a6n')}">
+                    <c:if test="${cardPlay.getName().equals('S6a6t6a6n') && gameState.getOptions().size() != 0}">
                         <table>
                             <tr>
                                 <td>
@@ -161,7 +179,7 @@
                         </table>
                     </c:if>
 
-                    <c:if test="${!cardPlay.getName().equals('S6a6t6a6n')}">
+                    <c:if test="${!cardPlay.getName().equals('S6a6t6a6n') && gameState.getSecondaryOption(cardPlay).size() != 0}">
                         <h4>Playing: ${cardPlay.getName()}</h4>
                         <table>
                             <tr>
@@ -202,7 +220,5 @@
     </form:form>
 
 </form:form>
-
-
 </body>
 </html>
