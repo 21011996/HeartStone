@@ -11,7 +11,7 @@ public abstract class Minion extends Card {
     public int defaultHealth;
     public int currentHealth = defaultHealth;
     public int attack;
-    public boolean exhausted = true;
+    private boolean exhausted = true;
 
     public boolean isExhausted() {
         return exhausted;
@@ -46,6 +46,7 @@ public abstract class Minion extends Card {
     public void takeDamage(int damage) {
         currentHealth -= damage;
         if (currentHealth <= 0) {
+            currentHealth = 0;
             minionStatus = MinionStatus.DEAD;
         }
     }
