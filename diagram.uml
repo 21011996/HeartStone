@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1012.0" y="634.0">cards.HeroStatus</node>
+    <node x="0.0" y="846.5">game.Deck</node>
+    <node x="840.1805555555557" y="0.0">cards.RequiredTarget</node>
+    <node x="842.7604166666666" y="1478.0">game.GameState</node>
+    <node x="1011.1805555555557" y="22.0">cards.CardClass</node>
+    <node x="387.0104166666665" y="1080.0">game.Player</node>
+    <node x="607.0" y="868.5">game.Hand</node>
+    <node x="295.0" y="835.5">game.Board</node>
+    <node x="1530.25" y="433.0">cards.MinionStatus</node>
+    <node x="830.25" y="656.0">cards.HeroPower</node>
+    <node x="1372.5" y="556.0">cards.Minion</node>
+    <node x="825.6805555555557" y="189.0">cards.Card</node>
+    <node x="911.0" y="835.0">cards.Hero</node>
+    <node x="1780.0" y="1179.0">game.TurnStage</node>
+    <node x="1136.2604166666665" y="2109.0">controller.GameController</node>
+    <node x="1533.5" y="902.0">cards.commonCards.minions.RazorfenHunter</node>
+    <node x="1062.1493055555557" y="455.0">cards.Spell</node>
+    <node x="1024.0" y="1223.5">cards.priestCards.Anduin</node>
+    <node x="1140.5" y="645.0">cards.mageCards.spells.Frostbolt</node>
+    <node x="1650.0" y="1212.5">game.ActivePlayer</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="game.Player" target="game.Board">
+      <point x="-32.58333333333326" y="-169.0" />
+      <point x="549.9270833333333" y="1060.0" />
+      <point x="514.0" y="1060.0" />
+      <point x="73.0" y="92.0" />
+    </edge>
+    <edge source="cards.Spell" target="cards.Card">
+      <point x="0.0" y="-14.5" />
+      <point x="1090.6493055555557" y="413.0" />
+      <point x="1019.3472222222224" y="413.0" />
+      <point x="27.666666666666742" y="92.0" />
+    </edge>
+    <edge source="controller.GameController" target="cards.Card">
+      <point x="136.33333333333326" y="-158.0" />
+      <point x="1477.0937499999998" y="2084.0" />
+      <point x="1972.5" y="2084.0" />
+      <point x="1972.5" y="393.0" />
+      <point x="1130.0138888888891" y="393.0" />
+      <point x="138.33333333333348" y="92.0" />
+    </edge>
+    <edge source="cards.Minion" target="cards.MinionStatus">
+      <point x="89.0" y="-114.5" />
+      <point x="1639.5" y="531.0" />
+      <point x="1581.25" y="531.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="game.GameState" target="cards.priestCards.Anduin">
+      <point x="-41.5" y="-290.5" />
+      <point x="1133.2604166666665" y="1458.0" />
+      <point x="1130.0" y="1458.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="game.Board" target="cards.Card">
+      <point x="0.0" y="-92.0" />
+      <point x="441.0" y="403.0" />
+      <point x="908.6805555555557" y="403.0" />
+      <point x="-83.0" y="92.0" />
+    </edge>
+    <edge source="cards.mageCards.spells.Frostbolt" target="cards.Spell">
+      <point x="0.0" y="-25.5" />
+      <point x="1246.5" y="531.0" />
+      <point x="1104.8993055555557" y="531.0" />
+      <point x="14.25" y="14.5" />
+    </edge>
+    <edge source="game.GameState" target="cards.mageCards.spells.Frostbolt">
+      <point x="41.5" y="-290.5" />
+      <point x="1216.2604166666665" y="1458.0" />
+      <point x="1246.5" y="1458.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="cards.priestCards.Anduin" target="cards.Hero">
+      <point x="0.0" y="-25.5" />
+      <point x="73.0" y="92.5" />
+    </edge>
+    <edge source="game.GameState" target="game.ActivePlayer">
+      <point x="207.5" y="-290.5" />
+      <point x="1382.2604166666665" y="1448.0" />
+      <point x="1705.0" y="1448.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="cards.HeroPower" target="cards.Spell">
+      <point x="0.0" y="-14.5" />
+      <point x="875.75" y="531.0" />
+      <point x="1076.3993055555557" y="531.0" />
+      <point x="-14.25" y="14.5" />
+    </edge>
+    <edge source="game.Player" target="game.Hand">
+      <point x="32.58333333333337" y="-169.0" />
+      <point x="615.0937499999999" y="1040.0" />
+      <point x="678.0" y="1040.0" />
+      <point x="-71.0" y="59.0" />
+    </edge>
+    <edge source="game.GameState" target="game.Deck">
+      <point x="-290.5" y="-290.5" />
+      <point x="884.2604166666666" y="1458.0" />
+      <point x="68.75" y="1458.0" />
+      <point x="-68.75" y="81.0" />
+    </edge>
+    <edge source="game.Player" target="game.Deck">
+      <point x="-162.91666666666669" y="-169.0" />
+      <point x="419.5937499999998" y="1060.0" />
+      <point x="206.25" y="1060.0" />
+      <point x="68.75" y="81.0" />
+    </edge>
+    <edge source="cards.Minion" target="cards.Card">
+      <point x="-89.0" y="-114.5" />
+      <point x="1461.5" y="531.0" />
+      <point x="1519.75" y="531.0" />
+      <point x="1519.75" y="403.0" />
+      <point x="1074.6805555555557" y="403.0" />
+      <point x="83.0" y="92.0" />
+    </edge>
+    <edge source="cards.Hero" target="cards.Minion">
+      <point x="97.33333333333326" y="-92.5" />
+      <point x="1154.3333333333333" y="810.0" />
+      <point x="1461.5" y="810.0" />
+      <point x="-89.0" y="114.5" />
+    </edge>
+    <edge source="game.GameState" target="game.Player">
+      <point x="-207.5" y="-290.5" />
+      <point x="967.2604166666666" y="1448.0" />
+      <point x="484.7604166666665" y="1448.0" />
+      <point x="-97.75" y="169.0" />
+    </edge>
+    <edge source="cards.Hero" target="cards.HeroPower">
+      <point x="-97.33333333333326" y="-92.5" />
+      <point x="959.6666666666667" y="810.0" />
+      <point x="875.75" y="810.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="cards.Hero" target="cards.HeroStatus">
+      <point x="0.0" y="-92.5" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="game.GameState" target="game.TurnStage">
+      <point x="290.5" y="-290.5" />
+      <point x="1465.2604166666665" y="1458.0" />
+      <point x="1871.0" y="1458.0" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="game.Hand" target="cards.Card">
+      <point x="0.0" y="-59.0" />
+      <point x="749.0" y="413.0" />
+      <point x="964.0138888888889" y="413.0" />
+      <point x="-27.66666666666663" y="92.0" />
+    </edge>
+    <edge source="game.Player" target="cards.Hero">
+      <point x="162.91666666666674" y="-169.0" />
+      <point x="745.4270833333333" y="1060.0" />
+      <point x="984.0" y="1060.0" />
+      <point x="-73.0" y="92.5" />
+    </edge>
+    <edge source="cards.Card" target="cards.RequiredTarget">
+      <point x="-83.0" y="-92.0" />
+      <point x="908.6805555555557" y="164.0" />
+      <point x="915.6805555555557" y="164.0" />
+      <point x="0.0" y="69.5" />
+    </edge>
+    <edge source="cards.commonCards.minions.RazorfenHunter" target="cards.Minion">
+      <point x="0.0" y="-25.5" />
+      <point x="89.0" y="114.5" />
+    </edge>
+    <edge source="controller.GameController" target="game.GameState">
+      <point x="0.0" y="-158.0" />
+      <point x="166.0" y="290.5" />
+    </edge>
+    <edge source="cards.Card" target="cards.CardClass">
+      <point x="83.0" y="-92.0" />
+      <point x="1074.6805555555557" y="164.0" />
+      <point x="1067.6805555555557" y="164.0" />
+      <point x="0.0" y="47.5" />
+    </edge>
+    <edge source="game.GameState" target="cards.commonCards.minions.RazorfenHunter">
+      <point x="124.5" y="-290.5" />
+      <point x="1299.2604166666665" y="1438.0" />
+      <point x="1639.5" y="1438.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="game.Deck" target="cards.Card">
+      <point x="0.0" y="-81.0" />
+      <point x="137.5" y="393.0" />
+      <point x="853.3472222222222" y="393.0" />
+      <point x="-138.33333333333337" y="92.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8550102249488752" x="985.807223152356" y="911.596268835207" />
+  <SelectedNodes>
+    <node>cards.priestCards.Anduin</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
