@@ -8,7 +8,7 @@
 <head>
     <title>HeartStone</title>
 </head>
-<body BACKGROUND="http://hdwallpaperbackgrounds.net/wp-content/uploads/2016/07/white-background-4.jpg">
+<body>
 <h3>Select player</h3>
 <form:form method="GET" action="/get-player">
     <table>
